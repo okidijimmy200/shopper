@@ -1,0 +1,71 @@
+Introducing the MERN Marketplace app
+--The MERN Marketplace application will allow users to become sellers, who can
+manage multiple shops and add the products they want to sell in each shop. Users
+who visit MERN Marketplace will be able to search for and browse products they
+want to buy and add products to their shopping cart to place an order.
+
+In this chapter, we will extend the MERN skeleton to build a simple version of the
+online marketplace, starting with the following features:
+Users with seller accounts
+Shop management
+Product management
+Product search by name and category
+
+--checkout the component tree for this app on pg 286
+
+---We will add new React components to implement views for managing shops and
+products as well as browsing and searching for products. We will also modify
+existing components such as the EditProfile, Menu, and Home components to
+develop the skeleton code into a marketplace application as we build out the different
+features in the rest of the chapter. These marketplace features will depend on the
+user's ability to update their accounts into seller accounts.
+
+Lecture 1;
+Allowing users to be sellers
+--Any user with an account on the MERN Marketplace application will have the option
+to update their accounts to seller accounts by making changes to their profiles.
+--We will add this option to convert to a seller account in the Edit Profile page,
+
+--A user with an active seller account will be allowed to create and manage their own
+shops, where they can manage products. Regular users will not have access to a seller
+dashboard, whereas users with active seller accounts will see a link to their
+dashboard on the menu as MY SHOPS.
+
+--To add this seller account feature, we need to update the user model, the Edit Profile
+view and add a MY SHOPS link to the menu that will only be visible to sellers
+
+Updating the user model::
+--We need to store additional detail about each user to determine whether a user is an
+active seller or not.
+--to add a seller value that will
+be set to false by default to represent regular users and can additionally be set to
+true to represent users who are also sellers.
+
+--This seller value for each user must be sent to the client with the user details
+received on successful sign-in, so the view can be rendered accordingly to show
+information relevant to the seller
+
+--update the response sent back in the signin controller method to add this detail,
+
+--Before rendering views based on seller
+authorizations, we first need to implement the option to activate seller account
+features in the EditProfile
+
+Updating the Edit Profile view::
+--A signed-in user will see a toggle in the Edit Profile view, allowing them to either
+activate or deactivate the seller feature.
+
+--When the form to edit profile details is submitted, the seller value is also added to
+details sent in the update to the server
+
+Updating the menu::
+--In the frontend of the marketplace application, we can render different options based
+on whether the user currently browsing the application has an active seller account.
+
+--we will add the code to conditionally display a link to MY SHOPS on
+the navigation bar, which will only be visible to the signed-in users who have active
+seller accounts.
+
+--This MY SHOPS link on the navigation bar will take users with active seller accounts
+to the seller dashboard view where they can manage the shops they own on the
+marketplace
