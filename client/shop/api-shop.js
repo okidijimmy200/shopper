@@ -1,4 +1,4 @@
-//temp code
+//We will use this method in the create new shop form view,
 const create = async (params, credentials, shop) => {
     try {
       let response = await fetch('/api/shops/by/'+ params.userId, {

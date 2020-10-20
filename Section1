@@ -90,3 +90,18 @@ able to create new shops
 --In the frontend, we will create new shop form view that takes user input for shop fields.
 
 The create shop API::
+
+Lecture 3:
+Fetching the create API in the view::
+---In the frontend, to make a request to this create API, we will set up a fetch method
+on the client side to make a POST request to the API route and pass it the multipart
+form data containing details of the new shop.
+
+The NewShop component::
+--Sellers in the marketplace application will interact with a form view to enter details of
+a new shop and create the new shop. We will render this form in the NewShop
+component, which will allow a seller to create a shop by entering a name and
+description, and uploading a logo image file from their local filesystem,
+
+--The NewShop component can only be viewed by a signed-in user who is also a seller.
+So we will add a PrivateRoute in the MainRouter component,

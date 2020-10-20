@@ -41,6 +41,11 @@ const MainRouter = () => {
         <PrivateRoute path="/seller/orders/:shop/:shopId" component={ShopOrders}/>
 
         <PrivateRoute path="/seller/shops" component={MyShops}/>
+    {/* The NewShop component can only be viewed by a signed-in user who is also a seller.
+So we will add a PrivateRoute in the MainRouter component, that will render this form only for authenticated users at */}
+{/* ------------------------------------------------------------------------------------ */}
+{/* This link can be added to any of the view components that may be accessed by the
+seller, for example in a view where a seller manages their shops in the marketplace. */}
         <PrivateRoute path="/seller/shop/new" component={NewShop}/>
         <PrivateRoute path="/seller/shop/edit/:shopId" component={EditShop}/>
         <PrivateRoute path="/seller/:shopId/products/new" component={NewProduct}/>

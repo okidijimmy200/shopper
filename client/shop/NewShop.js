@@ -1,4 +1,3 @@
-//temp code
 import React, {useState} from 'react'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -46,6 +45,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+/**Sellers in the marketplace application will interact with a form view to enter details of
+a new shop and create the new shop. We will render this form in the NewShop
+component, which will allow a seller to create a shop by entering a name and
+description, and uploading a logo image file from their local filesystem, */
 export default function NewShop() {
   const classes = useStyles()
   const [values, setValues] = useState({
@@ -56,18 +59,26 @@ export default function NewShop() {
       error: ''
   })
   const jwt = auth.isAuthenticated()
-
+/**These form field changes will be tracked with the handleChange method when a
+user interacts with the input fields to enter values */
   const handleChange = name => event => {
+  /**The handleChange method updates the state with the new values, including the
+name of the image file, should one be uploaded by the user */
     const value = name === 'image'
       ? event.target.files[0]
       : event.target.value
     setValues({...values, [name]: value })
   }
+/**adding a submit button that when clicked, should send the form data to the server. */
   const clickSubmit = () => {
+  /**will take the input values and populate shopData, which is a FormData object that ensures the data is stored in the correct format
+needed for the multipart/form-data encoding type. */
     let shopData = new FormData()
     values.name && shopData.append('name', values.name)
     values.description && shopData.append('description', values.description)
     values.image && shopData.append('image', values.image)
+  /**the create fetch
+method is called to create the new shop in the backend with this form data. */
     create({
       userId: jwt.user._id
     }, {
@@ -80,7 +91,8 @@ export default function NewShop() {
       }
     })
   }
-
+/**On
+successful shop creation, the user is redirected back to the MyShops view */
     if (values.redirect) {
       return (<Redirect to={'/seller/shops'}/>)
     }
@@ -91,6 +103,8 @@ export default function NewShop() {
             New Shop
           </Typography>
           <br/>
+{/* add the file upload elements using a Material-UI button and an HTML5 file
+input element */}
           <input accept="image/*" onChange={handleChange('image')} className={classes.input} id="icon-button-file" type="file" />
           <label htmlFor="icon-button-file">
             <Button variant="contained" color="secondary" component="span">
@@ -98,6 +112,7 @@ export default function NewShop() {
               <FileUpload/>
             </Button>
           </label> <span className={classes.filename}>{values.image ? values.image.name : ''}</span><br/>
+        {/* we add the name and description form fields with the TextField components */}
           <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
           <TextField
             id="multiline-flexible"
