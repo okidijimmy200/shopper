@@ -133,3 +133,19 @@ request from the client to query the shops collection and return the resulting s
 documents in the response.
 
 Fetch all shops for the view::
+
+Lecture 5:
+The Shops component frontend
+--In the Shops component, we will render the list of shops in a Material-UI List, after
+fetching the data from the server and setting the data in a state to be displayed
+
+--To implement this component, we first need to fetch and render the list of shops. We
+will make the fetch API call in the useEffect hook, and set the received shops array
+in the state
+
+--In the Shops component view, this retrieved shops array is iterated over using map,
+with each shop's data rendered in the view in a Material-UI ListItem, and each
+ListItem is also linked to the individual shop's view,
+
+--The Shops component will be accessed by the end user at /shops/all, which is set
+up with React Router and declared in MainRouter.js

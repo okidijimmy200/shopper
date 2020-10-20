@@ -1,4 +1,3 @@
-//temp code
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -40,10 +39,15 @@ const useStyles = makeStyles(theme => ({
     padding: '24px'
   }
 }))
+/**In the Shops component, we will render the list of shops in a Material-UI List, after
+fetching the data from the server and setting the data in a state to be displayed */
 export default function Shops(){
   const classes = useStyles()
   const [shops, setShops] = useState([])
 
+/**To implement this component, we first need to fetch and render the list of shops. We
+will make the fetch API call in the useEffect hook, and set the received shops array
+in the state */
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -67,6 +71,9 @@ export default function Shops(){
           All Shops
         </Typography>
         <List dense>
+    {/* In the Shops component view, this retrieved shops array is iterated over using map,
+with each shop's data rendered in the view in a Material-UI ListItem, and each
+ListItem is also linked to the individual shop's view, */}
           {shops.map((shop, i) => {
             return <Link to={"/shops/"+shop._id} key={i}>
               <Divider/>
