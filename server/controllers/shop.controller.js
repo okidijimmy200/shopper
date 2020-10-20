@@ -1,10 +1,14 @@
-//temp code
 import Shop from '../models/shop.model'
 import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
 import formidable from 'formidable'
 import fs from 'fs'
 import defaultImage from './../../client/assets/images/default.png'
+
+/**The create method in the shop controller, which is invoked after a seller is verified,
+uses the formidable node module to parse the multipart request that may contain
+an image file uploaded by the user for the shop logo */
+//---------------------------------------------------------------------------------------
 
 const create = (req, res) => {
   let form = new formidable.IncomingForm()
@@ -15,8 +19,12 @@ const create = (req, res) => {
         message: "Image could not be uploaded"
       })
     }
+  /**If there is a file, formidable will store it temporarily in the filesystem, and we will read it using the module to
+fs retrieve the filetype and data to store it in the field in the shop document. image */
     let shop = new Shop(fields)
     shop.owner= req.profile
+  /**The logo image file for the shop is uploaded by the user and stored in MongoDB as data. Then, in order to be shown in the views, it is retrieved from the database as an
+image file at a separate GET API. */
     if(files.image){
       shop.image.data = fs.readFileSync(files.image.path)
       shop.image.contentType = files.image.type

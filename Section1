@@ -69,3 +69,24 @@ seller accounts.
 --This MY SHOPS link on the navigation bar will take users with active seller accounts
 to the seller dashboard view where they can manage the shops they own on the
 marketplace
+
+Lecture 2:
+Adding shops to the marketplace::
+--Sellers on MERN Marketplace can create shops and add products to each shop. To
+store the shop data and enable shop management, we will implement a Mongoose
+Schema for shops, backend APIs to access and modify the shop data, and frontend
+views for both the shop owner and buyers browsing through the marketplace.
+--we will also be creating new shops, listing all shops, listing shops by owner, displaying a single shop, editing
+shops, and deleting shops from the application.
+
+Defining a Shop model::
+--The Shop schema in this model will have simple
+fields to store shop details, along with a logo image, and a reference to the user who
+owns the shop.
+
+Creating a new shop::
+--In MERN Marketplace, a user who is signed in and has an active seller account will be
+able to create new shops
+--In the frontend, we will create new shop form view that takes user input for shop fields.
+
+The create shop API::
