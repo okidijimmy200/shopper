@@ -5,6 +5,7 @@ import shopCtrl from '../controllers/shop.controller'
 
 const router = express.Router()
 
+/**add a route to retrieve all the shops stored in the database when the server receives a GET request */
 router.route('/api/shops')
   .get(shopCtrl.list)
 

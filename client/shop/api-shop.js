@@ -14,7 +14,7 @@ const create = async (params, credentials, shop) => {
         console.log(err)
       }
   }
-  
+  /**The list method on the client side will use fetch to make a GET request to the API, */
   const list = async (signal) => {
     try {
       let response = await fetch('/api/shops', {

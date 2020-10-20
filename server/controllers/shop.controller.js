@@ -111,7 +111,11 @@ const remove = async (req, res) => {
   }  
 }
 
+/**A GET request received at create route will invoke the list controller method, which
+will query the shops collection in the database to return all the shops. */
 const list = async (req, res) => {
+  /**This method will return all the shops in the database in response to the requesting
+client. */
   try {
     let shops = await Shop.find()
     res.json(shops)

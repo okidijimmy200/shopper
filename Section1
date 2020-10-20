@@ -105,3 +105,31 @@ description, and uploading a logo image file from their local filesystem,
 
 --The NewShop component can only be viewed by a signed-in user who is also a seller.
 So we will add a PrivateRoute in the MainRouter component,
+
+Lecture 4:
+Listing shops
+--In MERN Marketplace, regular users will be able to browse through a list of all the
+shops on the platform, and each shop owner will manage a list of their own shops.
+
+--we will implement the full-stack slices for retrieving and
+displaying two different lists of shops – a list of all the shops, and the list of shops
+owned by a specific user.
+
+Listing all shops::
+--Any user browsing through the marketplace will be able to see a list of all the shops
+on the marketplace. In order to implement this feature, we will have to query the
+shops collection to retrieve all the shops in the database and display it in a view to
+the end user
+
+we achieve this by
+A backend API to retrieve the list of shops
+A fetch method in the frontend to make a request to the API
+A React component to display the list of shops
+
+The shops list API::
+--In the backend, we will define an API to retrieve all the shops from the database, so
+the shops in the marketplace can be listed in the frontend. This API will accept a
+request from the client to query the shops collection and return the resulting shop
+documents in the response.
+
+Fetch all shops for the view::
