@@ -113,6 +113,9 @@ allowing a seller to access the edit page for each of their shops. */}
                     </Link>
                     {/* whereas the DeleteShop component handles the delete action */}
                     <DeleteShop shop={shop} onRemove={removeShop}/>
+              {/* the DeleteShop component will take the shop object and
+onRemove function definition from the MyShops component as props when it is
+added to MyShops, */}
                   </ListItemSecondaryAction>)
                 }
               </ListItem>

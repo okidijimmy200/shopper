@@ -74,6 +74,8 @@ request to the API route with the specific user ID passed in the URL. */
     }
   }
   
+  /**The fetch method will need to take the shop ID and current user's
+auth credentials then call the delete shop API with these values */
   const remove = async (params, credentials) => {
     try {
       let response = await fetch('/api/shops/' + params.shopId, {

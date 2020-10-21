@@ -108,6 +108,9 @@ const update = (req, res) => {
   })
 }
 
+/**When a DELETE request is received at this route, if the isOwner method confirms
+that the signed-in user is the owner of the shop, then the remove controller method
+deletes the shop specified by the shopId in the param. */
 const remove = async (req, res) => {
   try {
     let shop = req.shop

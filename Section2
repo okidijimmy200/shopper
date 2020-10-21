@@ -36,3 +36,22 @@ The EditShop component::
 --The EditShop component will show a form similar to the create new shop form, prepopulated
 with the existing shop details. This component will also show a list of the
 products in this shop,
+
+Lecture 4:
+Deleting a shop::
+--As a part of managing the shops they own, authorized sellers will have the option to
+delete any of their own shops
+
+The delete shop API::
+--This remove method simply deletes the shop document that corresponds to the
+provided ID from the Shops collection in the database.
+
+--The fetch method will be used when the user performs the delete operation by
+clicking a button in the frontend interface
+
+The DeleteShop component::
+--The DeleteShop component is added to the MyShops component for each shop in
+the list. It takes the shop object and a onRemove method as props from MyShops.
+
+With this implementation, authorized sellers will be able to remove a shop that they
+own from the marketplace.

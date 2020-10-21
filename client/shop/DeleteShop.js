@@ -1,4 +1,3 @@
-//temp code
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import IconButton from '@material-ui/core/IconButton'
@@ -12,6 +11,8 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import auth from './../auth/auth-helper'
 import {remove} from './api-shop.js'
 
+/**The component is added to the component for each shop in DeleteShop
+MyShops the list. It takes the object and a method as props from MyShops.shop onRemove */
 export default function DeleteShop(props) {
   const [open, setOpen] = useState(false)
   

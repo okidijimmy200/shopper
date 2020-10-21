@@ -32,6 +32,7 @@ router.route('/api/shops/:shopId')
 user is the owner of the shop associated with the shopId provided in the URL
 using the isOwner controller method */
   .put(authCtrl.requireSignin, shopCtrl.isOwner, shopCtrl.update)
+//a delete shop API in the backend, which will accept a DELETE request from the client
   .delete(authCtrl.requireSignin, shopCtrl.isOwner, shopCtrl.remove)
 
   /**The logo image file for the shop is uploaded by the user and stored in MongoDB as
