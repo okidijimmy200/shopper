@@ -8,3 +8,14 @@ the React component that will display the shop details in the view.
 The read a shop API::
 --read shop API GET route that queries the Shop collection with an ID and returns the shop in the
 response.
+
+Lecture 2:
+The Shop component::
+--The Shop component will render the shop details and also a list of products in the
+specified shop using a product list component, which will be discussed in
+the Products section.
+
+--To implement this Shop component, we will first retrieve the shop details with a fetch
+call to the read API in a useEffect hook, and set the received values to state
+
+This useEffect hook will only run when the shopId changes in the route params.

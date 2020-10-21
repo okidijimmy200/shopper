@@ -1,4 +1,3 @@
-//temp code
 import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
@@ -41,12 +40,18 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+/**The Shop component will render the shop details and also a list of products in the
+specified shop using a product list component, which will be discussed in
+the Products section */
 export default function Shop({match}) {
   const classes = useStyles()
   const [shop, setShop] = useState('')
   const [products, setProducts] = useState([])
   const [error, setError] = useState('')
 
+  /**To implement this Shop component, we will first retrieve the shop details with a fetch
+call to the read API in a useEffect hook, and set the received values to state */
+// This useEffect hook will only run when the shopId changes in the route params.
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -66,6 +71,8 @@ export default function Shop({match}) {
       if (data.error) {
         setError(data.error)
       } else {
+/**The retrieved shop data is set to state and rendered in the view to display the shop's
+name, logo, and description */
         setShop(data)
       }
     })
@@ -94,7 +101,8 @@ export default function Shop({match}) {
     }
 
   }, [match.params.shopId])
-
+/**The logoUrl points to the route from where the logo image can be retrieved from the
+database (if the image exists), */
     const logoUrl = shop._id
           ? `/api/shops/logo/${shop._id}?${new Date().getTime()}`
           : '/api/shops/defaultphoto'
@@ -102,6 +110,8 @@ export default function Shop({match}) {
       <Grid container spacing={8}>
         <Grid item xs={4} sm={4}>
           <Card className={classes.card}>
+    {/* The retrieved shop data is set to state and rendered in the view to display the shop's
+name, logo, and description */}
             <CardContent>
               <Typography type="headline" component="h2" className={classes.title}>
                 {shop.name}

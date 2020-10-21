@@ -38,6 +38,8 @@ const MainRouter = () => {
 up with React Router and declared in MainRouter.js wch will redirect the user to a view
 displaying all the shops in the marketplace. */}
         <Route path="/shops/all" component={Shops}/>
+{/* This route can be used in any component to link to a specific shop, and this link will
+take the user to the corresponding Shop view with the shop details loaded. */}
         <Route path="/shops/:shopId" component={Shop}/>
 
         <Route path="/order/:orderId" component={Order}/>
