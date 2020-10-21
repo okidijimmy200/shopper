@@ -54,6 +54,8 @@ So we will add a PrivateRoute in the MainRouter component, that will render this
 {/* This link can be added to any of the view components that may be accessed by the
 seller, for example in a view where a seller manages their shops in the marketplace. */}
         <PrivateRoute path="/seller/shop/new" component={NewShop}/>
+        {/* The EditShop component will only be accessible by authorized shop owners. So we
+will add a PrivateRoute in the MainRouter component */}
         <PrivateRoute path="/seller/shop/edit/:shopId" component={EditShop}/>
         <PrivateRoute path="/seller/:shopId/products/new" component={NewProduct}/>
         <PrivateRoute path="/seller/:shopId/:productId/edit" component={EditProduct}/>

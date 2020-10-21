@@ -79,6 +79,8 @@ retrieved as files in separate routes. */
   return res.json(req.shop)
 }
 
+/**The update controller method will use the formidable and fs modules to parse the form data and update the
+existing shop in the database */
 const update = (req, res) => {
   let form = new formidable.IncomingForm()
   form.keepExtensions = true
@@ -149,6 +151,8 @@ the response to the client. */
   }
 }
 
+/**In this method, if the user is found to be authorized, the update controller is invoked
+with a call to next(). */
 const isOwner = (req, res, next) => {
   const isOwner = req.shop && req.auth && req.shop.owner._id == req.auth._id
   if(!isOwner){

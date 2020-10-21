@@ -27,6 +27,10 @@ before creating a new shop with the shop data passed in the request. */
   .get(authCtrl.requireSignin, authCtrl.hasAuthorization, shopCtrl.listByOwner)
 
 router.route('/api/shops/:shopId')
+//PUT route that accepts the update request from the client allowing updating an existing shop in the database if the user making the request is the authorized seller of the given shop
+/**A PUT request received at the /api/shops/:shopId route first checks if the signedin
+user is the owner of the shop associated with the shopId provided in the URL
+using the isOwner controller method */
   .put(authCtrl.requireSignin, shopCtrl.isOwner, shopCtrl.update)
   .delete(authCtrl.requireSignin, shopCtrl.isOwner, shopCtrl.remove)
 

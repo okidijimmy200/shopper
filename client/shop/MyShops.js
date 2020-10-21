@@ -103,6 +103,8 @@ the modified list of shops for the current user */
                         View Orders
                       </Button>
                     </Link>
+                    {/* This link is added with an edit icon for each shop in the MyShops component,
+allowing a seller to access the edit page for each of their shops. */}
                     <Link to={"/seller/shop/edit/" + shop._id}>
                       <IconButton aria-label="Edit" color="primary">
                         {/* The Edit button links to an Edit Shop view */}

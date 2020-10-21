@@ -19,3 +19,20 @@ the Products section.
 call to the read API in a useEffect hook, and set the received values to state
 
 This useEffect hook will only run when the shopId changes in the route params.
+
+Lecture 3:
+Editing a shop
+--Authorized sellers in the application will be able to update the shops they have
+already added to the marketplace.
+
+The edit shop API::
+--In the backend, we will need an API that allows updating an existing shop in the
+database if the user making the request is the authorized seller of the given shop.
+--To use this update API in the frontend, you will need to define a fetch method that
+takes the shop ID, user auth credentials, and the updated shop details to make the
+fetch call to this update shop API,
+
+The EditShop component::
+--The EditShop component will show a form similar to the create new shop form, prepopulated
+with the existing shop details. This component will also show a list of the
+products in this shop,

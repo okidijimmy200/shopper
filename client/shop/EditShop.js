@@ -1,4 +1,3 @@
-//temp code
 import React, {useEffect, useState} from 'react'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -73,6 +72,8 @@ export default function EditShop ({match}) {
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
+/**we will need to utilize the read shop API to
+fetch the given shop's details in an useEffect hook and pre-populate the form fields */
     read({
       shopId: match.params.shopId
     }, signal).then((data) => {
