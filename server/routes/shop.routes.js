@@ -20,6 +20,8 @@ same user associated with the :userId specified in the route param. */
 /**The request to the create shop route will also verify that the current user is a seller
 before creating a new shop with the shop data passed in the request. */
   .post(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.isSeller, shopCtrl.create)
+// GET request to retrieve all the shops created by a given user
+//A GET request to this route will first ensure the requesting user is signed in and is also the authorized owner, before invoking the listByOwner controller method in shop.controller.js.
   .get(authCtrl.requireSignin, authCtrl.hasAuthorization, shopCtrl.listByOwner)
 
 router.route('/api/shops/:shopId')

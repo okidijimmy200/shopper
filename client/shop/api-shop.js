@@ -27,6 +27,9 @@ const create = async (params, credentials, shop) => {
     }
   }
   
+  /**to fetch the shops for a specific user using this list by owner API, we
+will add a fetch method that takes the signed-in user's credentials to make a GET
+request to the API route with the specific user ID passed in the URL. */
   const listByOwner = async (params, credentials, signal) => {
     try {
       let response = await fetch('/api/shops/by/'+params.userId, {

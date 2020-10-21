@@ -1,4 +1,3 @@
-//temp code
 import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -62,6 +61,9 @@ export default function MyShops(){
     }
   }, [])
 
+  /**The DeleteShop component updates the list by calling the removeShop method
+passed from MyShops. This removeShop method allows us to update the state with
+the modified list of shops for the current user */
   const removeShop = (shop) => {
     const updatedShops = [...shops]
     const index = updatedShops.indexOf(shop)
@@ -94,6 +96,7 @@ export default function MyShops(){
                 </ListItemAvatar>
                 <ListItemText primary={shop.name} secondary={shop.description}/>
                 { auth.isAuthenticated().user && auth.isAuthenticated().user._id == shop.owner._id &&
+                  // each shop has an edit and a delete option, unlike the list of items in Shops
                   (<ListItemSecondaryAction>
                     <Link to={"/seller/orders/" + shop.name+ '/'+shop._id}>
                       <Button aria-label="Orders" color="primary">
@@ -102,9 +105,11 @@ export default function MyShops(){
                     </Link>
                     <Link to={"/seller/shop/edit/" + shop._id}>
                       <IconButton aria-label="Edit" color="primary">
+                        {/* The Edit button links to an Edit Shop view */}
                         <Edit/>
                       </IconButton>
                     </Link>
+                    {/* whereas the DeleteShop component handles the delete action */}
                     <DeleteShop shop={shop} onRemove={removeShop}/>
                   </ListItemSecondaryAction>)
                 }

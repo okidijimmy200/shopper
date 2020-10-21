@@ -149,3 +149,44 @@ ListItem is also linked to the individual shop's view,
 
 --The Shops component will be accessed by the end user at /shops/all, which is set
 up with React Router and declared in MainRouter.js
+
+Lecture 6:
+Listing shops by owner:
+--Authorized sellers on the marketplace will see a list of the shops they created, which
+they can manage by editing or deleting any shop on the list.
+
+we will have to query the shops' collection to retrieve all the shops with
+the same owner and display it only to the authorized owner of the shops.
+
+A backend API that ensures the requesting user is authorized and retrieves
+the relevant list of shops
+A fetch method in the frontend to make a request to this API
+A React component to display the list of shops to the authorized user
+
+The shops by owner API::
+--We will implement an API in the backend to return the list of shops of a specific
+owner, so it can be rendered in the frontend for the end user.
+
+--In the query to the Shop collection, we find all the shops where the owner field
+matches the user-specified with the userId param, then populate the referenced
+user's ID and name in the owner field, and return the resulting shops in an array in
+the response to the client.
+
+Fetch all shops owned by a user for the view::
+--to fetch the shops for a specific user using this list by owner API, we
+will add a fetch method that takes the signed-in user's credentials to make a GET
+request to the API route with the specific user ID passed in the URL.
+--The shops returned in the response from the server using this method can be
+rendered in a React component to display the shops to the authorized user
+
+The MyShops component::
+--The MyShops component is similar to the Shops component. It fetches the list of
+shops owned by the current user, and renders each shop in a ListItem
+
+-Additionally, each shop has an edit and a delete option, unlike the list of items in
+Shops
+
+--The Edit button links to an Edit Shop view
+--we add this link to the navigation menu to redirect a
+signed-in seller to the view where they can manage the shops they own by editing or
+deleting a shop.

@@ -42,7 +42,9 @@ displaying all the shops in the marketplace. */}
 
         <Route path="/order/:orderId" component={Order}/>
         <PrivateRoute path="/seller/orders/:shop/:shopId" component={ShopOrders}/>
-
+{/* The MyShops component can only be viewed by a signed-in user who is also a seller.
+So we will add a PrivateRoute in the MainRouter component, which will render
+this component only for authenticated users at /seller/shops */}
         <PrivateRoute path="/seller/shops" component={MyShops}/>
     {/* The NewShop component can only be viewed by a signed-in user who is also a seller.
 So we will add a PrivateRoute in the MainRouter component, that will render this form only for authenticated users at */}

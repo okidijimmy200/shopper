@@ -125,9 +125,14 @@ client. */
     })
   }
 }
-
+/**listByOwner method will query the Shop collection in the database to
+get the matching shops */
 const listByOwner = async (req, res) => {
   try {
+  /**In the query to the Shop collection, we find all the shops where the owner field
+matches the user-specified with the userId param, then populate the referenced
+user's ID and name in the owner field, and return the resulting shops in an array in
+the response to the client. */
     let shops = await Shop.find({owner: req.profile._id}).populate('owner', '_id name')
     res.json(shops)
   } catch (err){
