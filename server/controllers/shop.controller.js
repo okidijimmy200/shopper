@@ -40,8 +40,12 @@ image file at a separate GET API. */
   })
 }
 
+/**the userByID controller method retrieves the shop from the
+database and attaches it to the request object to be used in the next method */
 const shopByID = async (req, res, next, id) => {
   try {
+  /**The shop object queried from the database will also contain the name and ID details
+of the owner, as we specified in the populate() method. */
     let shop = await Shop.findById(id).populate('owner', '_id name').exec()
     if (!shop)
       return res.status('400').json({
@@ -67,7 +71,10 @@ const defaultPhoto = (req, res) => {
   return res.sendFile(process.cwd()+defaultImage)
 }
 
+/**The read controller method then returns this shop object from the ShopByID in response to the client. */
 const read = (req, res) => {
+/**We are removing the image field before sending the response since images will be
+retrieved as files in separate routes. */
   req.shop.image = undefined
   return res.json(req.shop)
 }

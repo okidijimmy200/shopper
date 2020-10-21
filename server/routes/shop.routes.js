@@ -9,6 +9,8 @@ const router = express.Router()
 router.route('/api/shops')
   .get(shopCtrl.list)
 
+  /** read shop API GET route that queries the Shop collection with an ID and returns the shop in the
+response. */
 router.route('/api/shop/:shopId')
   .get(shopCtrl.read)
 
@@ -37,7 +39,10 @@ router.route('/api/shops/logo/:shopId')
 
 router.route('/api/shops/defaultphoto')
   .get(shopCtrl.defaultPhoto)
-
+  
+//read shop API is declared along with a route parameter handler
+//--------------------------------------------------------------------
+/**The param in the route URL will invoke the controller method, :shopId shopByID */
 router.param('shopId', shopCtrl.shopByID)
 /**To process the :userId param and retrieve the associated user from the database, we
 will utilize the userByID method in the user controller to make the user is available in the request object
