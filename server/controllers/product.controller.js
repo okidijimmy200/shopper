@@ -1,4 +1,3 @@
-//temp code
 import Product from '../models/product.model'
 import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
@@ -6,6 +5,10 @@ import formidable from 'formidable'
 import fs from 'fs'
 import defaultImage from './../../client/assets/images/default.png'
 
+/**This create method, in the product controller, uses the formidable node module to
+parse the multipart request that may contain an image file uploaded by the user along
+with the product fields. The parsed data is then saved to the Products collection as a
+new product. */
 const create = (req, res, next) => {
   let form = new formidable.IncomingForm()
   form.keepExtensions = true

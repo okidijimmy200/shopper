@@ -57,6 +57,8 @@ seller, for example in a view where a seller manages their shops in the marketpl
         {/* The EditShop component will only be accessible by authorized shop owners. So we
 will add a PrivateRoute in the MainRouter component */}
         <PrivateRoute path="/seller/shop/edit/:shopId" component={EditShop}/>
+        {/* This component will load at a route that is associated with a specific shop, so only signed-in users who are sellers
+can add a product to a shop they own */}
         <PrivateRoute path="/seller/:shopId/products/new" component={NewProduct}/>
         <PrivateRoute path="/seller/:shopId/:productId/edit" component={EditProduct}/>
 

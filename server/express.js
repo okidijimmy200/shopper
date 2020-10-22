@@ -47,7 +47,7 @@ app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 app.use('/', userRoutes)
 app.use('/', authRoutes)
 app.use('/', shopRoutes) //mount shop routes to expressjs file
-app.use('/', productRoutes)
+app.use('/', productRoutes) //mount pdt routes to expressjs file
 app.use('/', orderRoutes)
 
 app.get('*', (req, res) => {

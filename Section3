@@ -20,3 +20,23 @@ Defining a Product model
 will add a Mongoose model to define a Product model for storing the details of each
 product.
 
+Lecture 2:
+Creating a new product:
+--Sellers in MERN Marketplace will be able to add new products to the shops they own
+on the platform.
+
+The create product API::
+
+--to make a POST request to the create
+API by passing the multipart form data from the view. This fetch method can then
+be utilized in the React component, which takes the product details from the user and
+sends the request to create a new product.
+
+The NewProduct component::
+--An authorized seller who already has a shop created in the marketplace will see a
+form view for adding new products to the shop. We will implement this form view in
+a React component named NewProduct. The NewProduct component will be similar
+to the NewShop component. It will contain a form that allows a seller to create a
+product by entering a name, description, category, quantity, and price, and to upload
+a product image file from their local filesystem,
+

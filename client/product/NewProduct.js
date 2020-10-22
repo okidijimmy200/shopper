@@ -1,4 +1,3 @@
-//temp code
 import React, {useState} from 'react'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -46,6 +45,12 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+/**An authorized seller who already has a shop created in the marketplace will see a
+form view for adding new products to the shop. We will implement this form view in
+a React component named NewProduct. The NewProduct component will be similar
+to the NewShop component. It will contain a form that allows a seller to create a
+product by entering a name, description, category, quantity, and price, and to upload
+a product image file from their local filesystem, */
 export default function NewProduct({match}) {
   const classes = useStyles()
   const [values, setValues] = useState({

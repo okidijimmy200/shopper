@@ -1,5 +1,8 @@
-//temp code
 import queryString from 'query-string'
+
+/**to make a POST request to the create API by passing the multipart form data from the view. This fetch method can then
+be utilized in the React component, which takes the product details from the user and
+sends the request to create a new product. */
 const create = async (params, credentials, product) => {
   try {
     let response = await fetch('/api/products/by/'+ params.shopId, {
