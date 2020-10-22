@@ -14,6 +14,7 @@ with the shop identified by the :shopId param. */
 creating the new product in the database. This API utilizes the shopByID and isOwner methods from the shop controller to process
 the :shopId param and to verify that the current user is the shop owner, before invoking the create controller method. */
   .post(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.create)
+// GET route to retrieve products from a specific shop in the database,
   .get(productCtrl.listByShop)
 
 router.route('/api/products/latest')

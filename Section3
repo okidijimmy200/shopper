@@ -40,3 +40,35 @@ to the NewShop component. It will contain a form that allows a seller to create 
 product by entering a name, description, category, quantity, and price, and to upload
 a product image file from their local filesystem,
 
+Lecture 2:
+Listing products:
+--In MERN Marketplace, products will be presented to users in multiple ways. The two
+main distinctions will be in the way products are listed for sellers and the way they
+are listed for buyers.
+
+Listing by shop:
+--Visitors to the marketplace will browse products in each shop, and sellers will
+manage a list of products in each of their shops. Both these features will share the
+same backend API that will retrieve all the products for a specific shop but will be
+rendered differently for the two types of users.
+
+--we will
+implement the backend API for fetching the products in a specific shop
+--Then, we will
+use the API in two different React components to render the list of products to the
+seller of the shop in one component, and to the buyers in another component.
+
+The products by shop API::
+
+--Products component for buyers:;
+--We will build a Products component, mainly for displaying the products to visitors
+who may buy the products. We can reuse this component across the application to
+render different product lists relevant to the buyer.
+
+--It will receive the product list as
+props from a parent component that displays a list of products.
+
+--the list of products in a shop will be displayed to the
+user in an individual Shop view. So this Products component is added to the Shop
+component and given the list of relevant products as props,
+

@@ -107,8 +107,14 @@ const remove = async (req, res) => {
   }
 }
 
+/**The listByShop controller method executed in response to this request will query
+the Product collection to return the products matching the given shop's
+reference. */
 const listByShop = async (req, res) => {
   try {
+    /**Each product in the resulting products array will contain the name and ID details of
+the associated shop, and we will omit the image field since images can be retrieved
+via separate API routes */
     let products = await Product.find({shop: req.shop._id}).populate('shop', '_id name').select('-image')
     res.json(products)
   } catch (err) {

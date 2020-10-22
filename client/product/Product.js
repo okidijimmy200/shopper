@@ -1,4 +1,3 @@
-//temp code
 import React, {useState, useEffect}  from 'react'
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
@@ -60,6 +59,7 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-block'
   }
 }))
+
 
 export default function Product ({match}) {
   const classes = useStyles()

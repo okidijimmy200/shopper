@@ -85,7 +85,8 @@ name, logo, and description */
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
-
+/**In the Shop component, we need to add a call to the listByShop fetch method in
+a useEffect hook to retrieve the relevant products and set it to state */
     listByShop({
       shopId: match.params.shopId
     }, signal).then((data)=>{
@@ -127,6 +128,11 @@ name, logo, and description */}
         <Grid item xs={8} sm={8}>
           <Card>
             <Typography type="title" component="h2" className={classes.productTitle}>Products</Typography>
+            {/* the list of products in a shop will be displayed to the
+user in an individual Shop view. So this Products component is added to the Shop
+component and given the list of relevant products as props, */}
+{/* The searched prop relays whether this list is a result of a product search, so
+appropriate messages can be rendered */}
             <Products products={products} searched={false}/>
           </Card>
         </Grid>

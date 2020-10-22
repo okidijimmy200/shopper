@@ -63,6 +63,8 @@ const remove = async (params, credentials) => {
   }
 }
 
+/**In the frontend, to fetch the products in a specific shop using this API to list by shop,
+we will also need to add a fetch method */
 const listByShop = async (params, signal) => {
   try {
     let response = await fetch('/api/products/by/'+params.shopId, {

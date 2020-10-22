@@ -51,10 +51,18 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+/**the list of products in a shop will be displayed to the user in an individual
+view. So this component is added to the Shop Products Shop
+component and given the list of relevant products as props, */
 export default function Products(props){
+  // Products component can be used to render different lists of products for buyers, including products in a shop, products by category, and products in search results.
   const classes = useStyles()
     return (
       <div className={classes.root}>
+           {/* In the Products component, if the product list sent in the props contains products,
+the list is iterated over and the relevant details of each product are rendered in a
+Material-UI GridListTile, with a link to the individual product view and
+an AddToCart component  */}
       {props.products.length > 0 ?
         (<div className={classes.container}>
           <GridList cellHeight={200} className={classes.gridList} cols={3}>
@@ -70,6 +78,8 @@ export default function Products(props){
               />
             </GridListTile>
           ))}
+          {/* If the array sent in the props is found to be empty, and this was a result of products
+a search action by the user, we render an appropriate message to inform the user that no products were found. */}
         </GridList></div>) : props.searched && (<Typography variant="subheading" component="h4" className={classes.title}>No products found! :(</Typography>)}
       </div>)
 }
