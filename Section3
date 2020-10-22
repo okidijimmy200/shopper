@@ -1,0 +1,22 @@
+Adding products to shops
+--In the MERN
+Marketplace, sellers can manage products in their shops, and visitors can search for
+and browse products. While we will implement the features to allow authorized
+sellers to add, modify, and delete products from their shops, we will also incorporate
+features to list products in ways that are meaningful to the end user
+
+--we will retrieve and display products by a specific shop, products related
+to a given product, and the latest products added to the marketplace.
+
+--we will build out the product module incorporating these features by first
+defining a product model for storing product data in the database, and
+then implementing the backend APIs and frontend views for the product-related
+features including adding new products to a shop, rendering different lists of
+products, displaying a single product, editing products, and deleting products.
+
+Lecture 1:
+Defining a Product model
+--Products will be stored in a product collection in the database. To implement this, we
+will add a Mongoose model to define a Product model for storing the details of each
+product.
+
