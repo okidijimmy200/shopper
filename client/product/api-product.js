@@ -77,6 +77,8 @@ const listByShop = async (params, signal) => {
   }
 }
 
+/**implement listLatest API in the frontend, you will also need to set up a corresponding fetch
+method in api-product.js for this latest products API, */
 const listLatest = async (signal) => {
   try {
     let response = await fetch('/api/products/latest', {
@@ -89,6 +91,10 @@ const listLatest = async (signal) => {
   }
 }
 
+/**In order to utilize this related products API in the frontend, we will set up a
+corresponding fetch method in api-product.js which will be called
+in the Product component with the product ID to populate the Suggestions
+component rendered in the product view */
 const listRelated = async (params, signal) => {
   try {
     let response = await fetch('/api/products/related/'+params.productId, {

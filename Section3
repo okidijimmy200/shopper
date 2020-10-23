@@ -85,5 +85,33 @@ provided with the shop's ID in a prop so that relevant products can be fetched:
 --In MyProducts, the relevant products are first loaded in a state with an useEffect
 hook using the listByShop fetch method
 
+Lecture 4;
+Listing product suggestions
+--Visitors to MERN Marketplace will see product suggestions, such as the latest
+products added to the marketplace and products related to the product they are
+currently viewing.
+
+Latest products backend::
+--On the home page of the MERN Marketplace, we will display five of the latest
+products added to the marketplace.
+--
+
+--Related products::
+--This retrieved list will then be rendered in the Suggestions
+component to be added to the home page
+
+The Suggestions component:
+--The Suggestions component will be rendered on the home page and on an
+individual product page to show the latest products and related products,
+respectively
+
+--This Suggestions component can be reused to render any list of products to buyers,
+and in this section, we have discussed how to retrieve and display two different lists
+of products. Each product in the lists is linked to a view that will render details of the
+individual product.
+
+
+
+
 
 

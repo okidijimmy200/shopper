@@ -58,6 +58,8 @@ export default function Home(){
             <Categories categories={categories}/>
           </Grid>
           <Grid item xs={4} sm={4}>
+{/* This component will receive the relevant list of products from the parent component
+as props, along with a title for the list: */}
             <Suggestions products={suggestions} title={suggestionTitle}/>
           </Grid>
         </Grid>

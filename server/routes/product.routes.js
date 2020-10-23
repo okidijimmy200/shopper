@@ -17,9 +17,12 @@ the :shopId param and to verify that the current user is the shop owner, before 
 // GET route to retrieve products from a specific shop in the database,
   .get(productCtrl.listByShop)
 
+  //GET request to fetch the latest products,
 router.route('/api/products/latest')
+// A GET request received at this route will invoke the listLatest controller method.
   .get(productCtrl.listLatest)
 
+  //backend API that accepts a request for related products
 router.route('/api/products/related/:productId')
   .get(productCtrl.listRelated)
 
@@ -44,6 +47,9 @@ router.route('/api/product/:shopId/:productId')
   /**Sending a post request to thisproducts/by/:shopId route will create a new product associated
 with the shop identified by the :shopId param. */
 router.param('shopId', shopCtrl.shopByID)
+
+/**The:productId param in the route URL route will call the productByID controller
+method,and retrieves the product from the database and attaches it to the request object to be used in the next method. */
 router.param('productId', productCtrl.productByID)
 
 export default router

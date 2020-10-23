@@ -1,4 +1,3 @@
-//temp code
 import React from 'react'
 import PropTypes from 'prop-types'
 import {makeStyles} from '@material-ui/core/styles'
@@ -77,6 +76,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+/**This retrieved list will then be rendered in the Suggestions
+component to be added to the home page */
+/**The Suggestions component will be rendered on the home page and on an
+individual product page to show the latest products and related products,
+respectively */
 export default function Suggestions (props) {
   const classes = useStyles()
     return (<div>
@@ -84,6 +88,9 @@ export default function Suggestions (props) {
         <Typography type="title" className={classes.title}>
           {props.title}
         </Typography>
+        {/* In the Suggestions component, the received list is iterated over and individual
+products are rendered with relevant details, a link to the individual product page,
+and an AddToCart component, */}
         {props.products.map((item, i) => {
             return <span key={i}>
               <Card className={classes.card}>

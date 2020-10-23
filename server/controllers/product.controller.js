@@ -35,6 +35,7 @@ const create = (req, res, next) => {
   })
 }
 
+//Once the product is retrieved, the listRelated controller method is invoked.
 const productByID = async (req, res, next, id) => {
   try {
     let product = await Product.findById(id).populate('shop', '_id name').exec()
@@ -124,6 +125,9 @@ via separate API routes */
   }
 }
 
+/**The listLatest method will find all products, sort the list of products in the database with the
+created date field from newest to oldest, and return the first five from the sorted list
+in the response. */
 const listLatest = async (req, res) => {
   try {
     let products = await Product.find({}).sort('-created').limit(5).populate('shop', '_id name').exec()
@@ -135,6 +139,9 @@ const listLatest = async (req, res) => {
   }
 }
 
+/**The listRelated method queries the Product collection in the database to find other products with
+the same category as the given product, excluding the given product, and returns the
+first five products in the resulting list. */
 const listRelated = async (req, res) => {
   try{
     let products = await Product.find({ "_id": { "$ne": req.product }, "category": req.product.category}).limit(5).populate('shop', '_id name').exec()
