@@ -33,6 +33,8 @@ const MainRouter = () => {
         <Route path="/user/:userId" component={Profile}/>
 
         <Route path="/cart" component={Cart}/>
+        {/* The Product component can be accessed in the browser at the
+/product/:productID route, which is defined in MainRouter */}
         <Route path="/product/:productId" component={Product}/>
   {/* The Shops component will be accessed by the end user at /shops/all, which is set
 up with React Router and declared in MainRouter.js wch will redirect the user to a view

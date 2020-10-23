@@ -19,6 +19,9 @@ const create = async (params, credentials, product) => {
     }
 }
 
+/**To use this read product API in the frontend, we will need to add a fetch method
+which is then  used in the React component, which will render the
+individual product details, */
 const read = async (params, signal) => {
   try {
     let response = await fetch('/api/products/' + params.productId, {

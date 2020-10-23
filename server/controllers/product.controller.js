@@ -63,6 +63,8 @@ const defaultPhoto = (req, res) => {
   return res.sendFile(process.cwd()+defaultImage)
 }
 
+/**The product in the request object is used by the read controller method to respond to
+the GET request */
 const read = (req, res) => {
   req.product.image = undefined
   return res.json(req.product)

@@ -32,6 +32,7 @@ router.route('/api/products/categories')
 router.route('/api/products')
   .get(productCtrl.list)
 
+  /**a GET route that queries the Products collection with an ID and returns the product in the response */
 router.route('/api/products/:productId')
   .get(productCtrl.read)
 

@@ -66,10 +66,14 @@ export default function Product ({match}) {
   const [product, setProduct] = useState({shop:{}})
   const [suggestions, setSuggestions] = useState([])
   const [error, setError] = useState('')
+  /**The product details and the related product list data will be fetched by calling the
+relevant APIs with useEffect hooks using the productId specified in the route
+param, */
     useEffect(() => {
       const abortController = new AbortController()
       const signal = abortController.signal
-  
+  /**we call the read API to retrieve the specified product
+and set it to state. */
       read({productId: match.params.productId}, signal).then((data) => {
         if (data.error) {
           setError(data.error)
@@ -85,7 +89,9 @@ export default function Product ({match}) {
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
-
+/**we call the listRelated API to get the list of
+related products and set it to the state to be passed as a prop to a Suggestions
+component added in the product view. */
         listRelated({
           productId: match.params.productId}, signal).then((data) => {
           if (data.error) {
@@ -106,6 +112,8 @@ export default function Product ({match}) {
         <div className={classes.root}>
           <Grid container spacing={10}>
             <Grid item xs={7} sm={7}>
+              {/* The product details part of the component displays relevant information about the
+product and an AddToCart component in a Material-UI Card component */}
               <Card className={classes.card}>
                 <CardHeader
                   title={product.name}
@@ -137,6 +145,8 @@ export default function Product ({match}) {
             </Grid>
             {suggestions.length > 0 &&
               (<Grid item xs={5} sm={5}>
+                {/* The Suggestions component is added in the Product view with the related list data
+passed as a prop */}
                 <Suggestions  products={suggestions} title='Related Products'/>
               </Grid>)}
           </Grid>

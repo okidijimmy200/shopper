@@ -110,6 +110,25 @@ and in this section, we have discussed how to retrieve and display two different
 of products. Each product in the lists is linked to a view that will render details of the
 individual product.
 
+Lecture 5:
+Displaying a product
+--Visitors to the MERN Marketplace will be able to view more details of each product
+in a separate view. In the following sections, we will implement a backend API to
+retrieve a single product from the database and then use it in the frontend to render
+the single product in a React component.
+
+Read a product API::
+--In the backend, we will add an API with a GET route that queries the Products
+collection with an ID and returns the product in the response.
+
+Product component::
+--We will add a React component named Product to render the individual product
+details, along with an add to cart option. In this single product view, we will also
+show a list of related products,
+
+--The product details and the related product list data will be fetched by calling the
+relevant APIs with useEffect hooks using the productId specified in the route
+param,
 
 
 
