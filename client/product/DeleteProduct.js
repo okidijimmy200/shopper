@@ -1,4 +1,3 @@
-//temp code
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import IconButton from '@material-ui/core/IconButton'
@@ -19,6 +18,7 @@ export default function DeleteProduct(props) {
   const clickButton = () => {
     setOpen(true)
   }
+  // The removeProduct method
   const deleteProduct = () => {
     remove({
       shopId: props.shopId,

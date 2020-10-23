@@ -1,4 +1,3 @@
-//temp code
 import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
@@ -46,10 +45,13 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+/**Implementing a separate MyProducts component this way gives the shop owner the
+ability to see the list of products in their shop with the option to edit and delete each. */
 export default function MyProducts (props){
   const classes = useStyles()
   const [products, setProducts] = useState([])
-  
+/**In MyProducts, the relevant products are first loaded in a state with an useEffect
+hook using the listByShop fetch method */  
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -67,7 +69,8 @@ export default function MyProducts (props){
       abortController.abort()
     }
   }, [])
-
+/**The removeProduct method, defined in MyProducts, is provided as the onRemove
+prop to the DeleteProduct component */
   const removeProduct = (product) => {
     const updatedProducts = [...products]
     const index = updatedProducts.indexOf(product)
@@ -87,6 +90,8 @@ export default function MyProducts (props){
             </Link>
           </span>
         </Typography>
+        {/* This list of products is then iterated over with each product rendered in
+the ListItem components along with edit and delete options, */}
         <List dense>
         {products.map((product, i) => {
             return <span key={i}>
@@ -105,14 +110,23 @@ export default function MyProducts (props){
                   </Typography>
                 </div>
                 <ListItemSecondaryAction>
+                  {/* The edit button links to the Edit Product view. */}
                   <Link to={"/seller/"+product.shop._id+"/"+product._id+"/edit"}>
                     <IconButton aria-label="Edit" color="primary">
                       <Edit/>
                     </IconButton>
                   </Link>
+                  {/* The DeleteProduct
+component handles the delete action, and reloads the list by calling an onRemove
+method passed from MyProducts to update the state with the updated list of
+products for the current shop. */}
                   <DeleteProduct
                     product={product}
                     shopId={props.shopId}
+                    /**onRemove method passed from MyProducts to update the state with the updated list of
+products for the current shop. */
+  // The removeProduct method
+// is passed as a prop to the DeleteProduct component when it is added to MyProducts
                     onRemove={removeProduct}/>
                 </ListItemSecondaryAction>
               </ListItem>

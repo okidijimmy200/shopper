@@ -72,3 +72,18 @@ props from a parent component that displays a list of products.
 user in an individual Shop view. So this Products component is added to the Shop
 component and given the list of relevant products as props,
 
+Lecture 3:
+MyProducts component for shop owners::
+--In contrast to the Products component, the MyProducts component in
+client/product/MyProducts.js is only for displaying products to sellers so they
+can manage the products in each shop they own and will be displayed to the end user
+
+--The MyProducts component is added to the EditShop view as shown in the
+following code, so sellers can manage a shop and its contents in one place. It is
+provided with the shop's ID in a prop so that relevant products can be fetched:
+
+--In MyProducts, the relevant products are first loaded in a state with an useEffect
+hook using the listByShop fetch method
+
+
+

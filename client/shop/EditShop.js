@@ -162,6 +162,9 @@ fetch the given shop's details in an useEffect hook and pre-populate the form fi
           </Card>
           </Grid>
           <Grid item xs={6} sm={6}>
+            {/* The MyProducts component is added to the EditShop view as shown in the
+following code, so sellers can manage a shop and its contents in one place. It is
+provided with the shop's ID in a prop so that relevant products can be fetched: */}
             <MyProducts shopId={match.params.shopId}/>
           </Grid>
         </Grid>
