@@ -1,0 +1,13 @@
+Lecture 1:
+Editing and deleting a product
+--Implementations to edit and delete products in the application are similar to editing
+and deleting shops
+
+Edit::
+--The edit functionality is very similar to the create product functionality we
+implemented earlier. The EditProduct form component, which can be implemented
+to render a form that allows product detail modification, will also only be accessible
+by verified sellers
+
+--This implementation of an edit product form view integrated with an update API in
+the backend will allow shop owners to modify the details of products in their shops

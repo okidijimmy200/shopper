@@ -62,6 +62,8 @@ will add a PrivateRoute in the MainRouter component */}
         {/* This component will load at a route that is associated with a specific shop, so only signed-in users who are sellers
 can add a product to a shop they own */}
         <PrivateRoute path="/seller/:shopId/products/new" component={NewProduct}/>
+        {/* To restrict access to this view, we can add a PrivateRoute in MainRouter to declare
+the route to the EditProduct view */}
         <PrivateRoute path="/seller/:shopId/:productId/edit" component={EditProduct}/>
 
         <Route path="/seller/stripe/connect" component={StripeConnect}/>

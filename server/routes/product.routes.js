@@ -42,6 +42,7 @@ router.route('/api/product/defaultphoto')
   .get(productCtrl.defaultPhoto)
 
 router.route('/api/product/:shopId/:productId')
+// a PUT request to the edit product API in the backend
   .put(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.update)
   .delete(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.remove)
 

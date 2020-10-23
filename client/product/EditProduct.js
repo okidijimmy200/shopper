@@ -1,4 +1,3 @@
-//temp code
 import React, {useEffect, useState} from 'react'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -53,6 +52,11 @@ const useStyles = makeStyles(theme => ({
     marginLeft:'10px'
   }
 }))
+
+/**The EditProduct component contains the same form as NewProduct, but with
+populated values of the product retrieved using the read product API. On form
+submit, it uses a fetch method to send multipart form data with a PUT request to the
+edit product API in the backend at /api/products/by/:shopId. */
 
 export default function EditProduct ({match}) {
   const classes = useStyles()

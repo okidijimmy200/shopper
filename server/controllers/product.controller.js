@@ -70,6 +70,8 @@ const read = (req, res) => {
   return res.json(req.product)
 }
 
+/**The update controller method is invoked when an authorized user sends a PUT
+request to this API */
 const update = (req, res) => {
   let form = new formidable.IncomingForm()
   form.keepExtensions = true
@@ -87,6 +89,8 @@ const update = (req, res) => {
       product.image.contentType = files.image.type
     }
     try {
+    /**It handles the multipart form data using formidable and extends the
+product details to save the updates to the database */
       let result = await product.save()
       res.json(result)
     }catch (err){
