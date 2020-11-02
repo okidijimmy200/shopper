@@ -30,3 +30,16 @@ component that will retrieve the list using the distinct categories API
 
 --This search view gives visitors a useful tool to look for the specific product they want
 among many that may be stored in the database for the complete marketplace.
+
+Lecture 2:
+The Categories component::
+--The Categories component is the second use case for the distinct categories and
+search APIs. For this component, we first fetch the list of categories in a parent
+component and send it as props to display the categories to the user,
+
+--When the user selects a category in the displayed list, a call is made to the Search API
+with just a category value, and the backend returns all the products in the selected
+category. The returned products are then rendered in a Products component. This
+can be a simple way to combine these APIs and display meaningful products to
+buyers browsing through the marketplace.
+
