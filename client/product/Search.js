@@ -1,4 +1,3 @@
-//temp code
 import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import {makeStyles} from '@material-ui/core/styles'
@@ -55,9 +54,13 @@ export default function Search(props) {
       ...values, [name]: event.target.value,
     })
   }
+  /**The search method makes a call to the search API using the list fetch method,
+providing it with the necessary search query parameters and values. */
   const search = () => {
     if(values.search){
       list({
+        /**In this method, the query parameters provided to the list method are the search text
+value, if any, and the selected category value. */
         search: values.search || undefined, category: values.category
       }).then((data) => {
         if (data.error) {
@@ -68,6 +71,8 @@ export default function Search(props) {
       })
     }
   }
+  /**To detect that the Enter key was pressed, we use the onKeyDown attribute on
+the TextField and define the enterKey handler */
   const enterKey = (event) => {
     if(event.keyCode == 13){
       event.preventDefault()
@@ -77,6 +82,9 @@ export default function Search(props) {
     return (
       <div>
         <Card className={classes.card}>
+          {/* This Search component provides the user with a simple form containing a search
+input text field and a dropdown of the category options received from a parent
+component that will retrieve the list using the distinct categories API */}
           <TextField
             id="select-category"
             select
@@ -108,10 +116,16 @@ export default function Search(props) {
             className={classes.searchField}
             margin="normal"
           />
+          {/* Once the user enters a search text and hits Enter, we will make a call to the search
+method */}
           <Button variant="contained" color={'primary'} className={classes.searchButton} onClick={search}>
             <SearchIcon/>
           </Button>
           <Divider/>
+          {/* the results array received from the
+backend is set to the values in state and passed as a prop to the Products
+component, to render the matching products underneath the search
+form: */}
           <Products products={values.results} searched={values.searched}/>
         </Card>
       </div>

@@ -26,9 +26,14 @@ router.route('/api/products/latest')
 router.route('/api/products/related/:productId')
   .get(productCtrl.listRelated)
 
+  //get request will return an array of unique categories,
 router.route('/api/products/categories')
   .get(productCtrl.listCategories)
 
+  /**API that will take a GET request at
+/api/products?search=value&category=value, with query parameters in the
+URL to query the Products collection with the provided search text and category
+values. */
 router.route('/api/products')
   .get(productCtrl.list)
 

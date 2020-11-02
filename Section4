@@ -11,3 +11,14 @@ by verified sellers
 
 --This implementation of an edit product form view integrated with an update API in
 the backend will allow shop owners to modify the details of products in their shops
+
+Delete::
+--In order to implement the delete product functionality, we can implement
+a DeleteProduct component similar to the DeleteShop component, and add it to
+the MyProducts component for each product in the list. It can take the product
+object, shopID, and an onRemove method as a prop from MyProducts,
+
+--The component will function the same as DeleteShop, opening a dialog for
+confirmation on button-click and then, when the delete intent is confirmed by the
+user, calling the fetch method for delete, which makes the DELETE request to the
+server at /api/product/:shopId/:productId.

@@ -1,0 +1,32 @@
+Searching for products with name and category
+--In MERN Marketplace, visitors will be able to search for specific products by name
+and also in a specific category.
+
+Lecture 1:
+The categories API
+--To allow users to select a specific category to search in, we will first set up an API that
+retrieves all the distinct categories present in the Products collection in the database.
+
+The search products API:;
+--The resulting products returned against the provided query parameters in the request
+are populated with shop details and downsized by removing the image field value,
+before being sent back in the response.
+
+Fetch search results for the view::
+--To utilize this search API in the frontend, we will set up a method that constructs the
+URL with query parameters and calls a fetch to make a request to the search product
+API.
+
+--In order to construct the query parameters in the correct format, we will use the
+query-string node module, which will help stringify the params object into a query
+string that can be attached to the request route URL. The keys and values in this
+params object will be defined by the React component where we call this list
+method.
+
+The Search component:
+--This Search component provides the user with a simple form containing a search
+input text field and a dropdown of the category options received from a parent
+component that will retrieve the list using the distinct categories API
+
+--This search view gives visitors a useful tool to look for the specific product they want
+among many that may be stored in the database for the complete marketplace.

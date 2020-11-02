@@ -159,6 +159,8 @@ const listRelated = async (req, res) => {
   }
 }
 
+/**The listCategories controller method queries the Products collection with a
+distinct call against the category field, */
 const listCategories = async (req, res) => {
   try {
     let products = await Product.distinct('category',{})
@@ -170,6 +172,9 @@ const listCategories = async (req, res) => {
   }
 }
 
+/**The list controller method will first process the query parameters in the request,
+then find products in the given category, if any, with names that partially match with
+the provided search text. */
 const list = async (req, res) => {
   const query = {}
   if(req.query.search)
@@ -177,6 +182,9 @@ const list = async (req, res) => {
   if(req.query.category && req.query.category != 'All')
     query.category =  req.query.category
   try {
+    /**The resulting products returned against the provided query parameters in the request
+are populated with shop details and downsized by removing the image field value,
+before being sent back in the response. */
     let products = await Product.find(query).populate('shop', '_id name').select('-image').exec()
     res.json(products)
   } catch (err){

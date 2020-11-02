@@ -1,3 +1,8 @@
+/**In order to construct the query parameters in the correct format, we will use the
+query-string node module, which will help stringify the params object into a query
+string that can be attached to the request route URL. The keys and values in this
+params object will be defined by the React component where we call this list
+method. */
 import queryString from 'query-string'
 
 /**to make a POST request to the create API by passing the multipart form data from the view. This fetch method can then
@@ -122,6 +127,9 @@ const listCategories = async (signal) => {
   }
 }
 
+/**To utilize this search API in the frontend, we will set up a method that constructs the
+URL with query parameters and calls a fetch to make a request to the search product
+API. */
 const list = async (params, signal) => {
   const query = queryString.stringify(params)
   try {
