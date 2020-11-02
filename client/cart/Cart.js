@@ -18,6 +18,7 @@ export default function Cart () {
   const classes = useStyles()
   const [checkout, setCheckout] = useState(false)
 
+  //The showCheckout method to update the checkout value
   const showCheckout = val => {
     setCheckout(val)
   }
@@ -25,6 +26,12 @@ export default function Cart () {
     return (<div className={classes.root}>
       <Grid container spacing={8}>
         <Grid item xs={6} sm={6}>
+          {/* The cart view will contain the cart items and checkout details. But initially, only the
+cart details will be displayed until the user is ready to check out. */}
+{/* The CartItems component, which displays the items in the cart, is passed a
+checkout Boolean value and a state update method for this checkout value so that
+the Checkout component and its options can be rendered conditionally based on user
+interaction */}
           <CartItems checkout={checkout}
                      setCheckout={showCheckout}/>
         </Grid>

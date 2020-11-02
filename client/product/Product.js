@@ -120,6 +120,11 @@ product and an AddToCart component in a Material-UI Card component */}
                   subheader={product.quantity > 0? 'In Stock': 'Out of Stock'}
                   action={
                     <span className={classes.action}>
+                      {/* AddToCart component in
+client/Cart/AddToCart.js takes a product object and a CSS style object as props
+from the parent component it is added to. */}
+{/* The AddToCart component, when rendered, displays a cart icon button depending
+on whether the passed item is in stock or not, */}
                       <AddToCart cartStyle={classes.addCart} item={product}/>
                     </span>
                   }

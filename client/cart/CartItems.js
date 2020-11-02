@@ -1,4 +1,3 @@
-//temp code
 import React, {useState} from 'react'
 import auth from './../auth/auth-helper'
 import Card from '@material-ui/core/Card'
@@ -94,8 +93,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function CartItems (props) {
   const classes = useStyles()
+  // In the CartItems component, we will retrieve the cart items using the getCart helper method and set it to the state of the initial value of cartItems
   const [cartItems, setCartItems] = useState(cart.getCart())
 
+  /**When the user updates this value, the handleChange method is called to enforce the
+minimum value validation, update the cartItems in the state, and update the cart in
+localStorage using a helper method. */
   const handleChange = index => event => {
     let updatedCartItems = cartItems
     if(event.target.value == 0){
@@ -107,12 +110,18 @@ export default function CartItems (props) {
     cart.updateCart(index, event.target.value)
   }
 
+  /**The getTotal method will calculate the total price while taking the unit price and
+quantity of each item in the cartItems array into consideration. */
   const getTotal = () => {
     return cartItems.reduce((a, b) => {
         return a + (b.quantity*b.product.price)
     }, 0)
   }
-
+/**The removeItem click handler method uses the removeItem helper method to
+remove the item from the cart in localStorage, then updates the cartItems in the
+state. This method also checks whether the cart has been emptied so that checkout can
+be hidden by using the setCheckout function passed as a prop from the Cart
+component. */
   const removeItem = index => event =>{
     let updatedCartItems = cart.removeItem(index)
     if(updatedCartItems.length == 0){
@@ -121,6 +130,9 @@ export default function CartItems (props) {
     setCartItems(updatedCartItems)
   }
 
+  /**When the checkout button is clicked, the openCheckout method will use the
+setCheckout method passed as a prop to set the checkout value to true in the Cart
+component. */
   const openCheckout = () => {
     props.setCheckout(true)
   }
@@ -129,10 +141,18 @@ export default function CartItems (props) {
       <Typography type="title" className={classes.title}>
         Shopping Cart
       </Typography>
+      {/* If the cart contains items, the CartItems component iterates over the items and
+renders the products in the cart. If no items have been added, the cart view just
+displays a message stating that the cart is empty */}
       {cartItems.length>0 ? (<span>
           {cartItems.map((item, i) => {
+            /**For each product item, we show the details of the product and an editable quantity
+text field, along with a remove item option. Finally, we show the total price of the
+items in the cart and the option to start the checkout operation. */
             return <span key={i}><Card className={classes.cart}>
               <CardMedia
+              /**Then, this cartItems array that was retrieved from localStorage is iterated over
+using the map function to render the details of each item, */
                 className={classes.cover}
                 image={'/api/product/image/'+item.product._id}
                 title={item.product.name}
@@ -147,6 +167,9 @@ export default function CartItems (props) {
                   </div>
                 </CardContent>
                 <div className={classes.subheading}>
+  {/* Each cart item displayed in the cart view will contain an editable TextField that will
+allow the user to update the quantity for each product they are buying, with a
+minimum allowed value of 1, */}
                   Quantity: <TextField
                               value={item.quantity}
                               onChange={handleChange(i)}
@@ -159,6 +182,9 @@ export default function CartItems (props) {
                                 shrink: true,
                               }}
                               margin="normal"/>
+                              {/* Each item in the cart will have a remove option next to it. This remove item option is
+a button that, when clicked, passes the array index of the item to the removeItem
+method so that it can be removed from the array. */}
                             <Button className={classes.removeButton} color="primary" onClick={removeItem(i)}>x Remove</Button>
                 </div>
               </div>
@@ -167,7 +193,11 @@ export default function CartItems (props) {
           </span>})
         }
         <div className={classes.checkout}>
+          {/* At the bottom of the CartItems component, we will display the total price of the
+items in the cart. */}
           <span className={classes.total}>Total: ${getTotal()}</span>
+          {/* The user will see the option to perform the checkout depending on whether they are
+signed in and whether the checkout has already been opened, */}
           {!props.checkout && (auth.isAuthenticated()?
             <Button color="secondary" variant="contained" onClick={openCheckout}>Checkout</Button>
             :

@@ -38,6 +38,10 @@ const Menu = withRouter(({history}) => (
         <Link to="/shops/all">
           <Button style={isActive(history, "/shops/all")}>All Shops</Button>
         </Link>
+        {/* The link for the cart */}
+        {/* Clicking on this cart link, with the item total displayed on the menu, will take the user
+to the cart view and reveal details of the items that have already been added to the
+cart. */}
         <Link to="/cart">
           <Button style={isActive(history, "/cart")}>
             Cart

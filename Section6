@@ -1,0 +1,76 @@
+Extending the Marketplace for Orders and Payments
+--implementing
+capabilities for buyers to add products to a shopping cart, a checkout, and place
+orders, and for sellers to manage these orders and have payments processed from the
+marketplace application
+
+In this chapter, we will extend the online marketplace by covering the following
+topics:
+--Introducing a cart, payments, and orders in the MERN Marketplace
+--Implementing a shopping cart
+--Using Stripe for payments
+--Integrating the checkout process
+--Creating a new order
+--Listing orders for each shop
+--Viewing single-order details
+
+Lecture 1:
+Introducing cart, payments, and orders in the MERN Marketplace
+
+Implementing a shopping cart::
+--Implementing a shopping cart
+Visitors to the MERN Marketplace can add products they wish to buy to a shopping
+cart by clicking the add to cart button on each product. A cart icon on the menu will
+indicate the number of products that have already been added to their cart as the user
+continues to browse through the marketplace. They can also update the cart's
+contents and begin the checkout process by opening the cart view. But to complete
+the checkout process and place an order, users will be required to sign in.
+
+--The shopping cart is mainly a frontend feature, so the cart details will be stored
+locally on the client side until the user places the order at checkout. To implement the
+shopping cart features, we will set up helper methods in client/cart/carthelper.
+js that will help manipulate the cart details from relevant React
+components
+
+Adding to the cart::
+
+
+Cart icon in the menu::
+--In the menu, we will add a link to the cart view, as well as a badge that displays the
+length of the cart array stored in localStorage in order to visually inform the user
+of how many items are currently in their cart.
+
+The cart view::
+--The cart view will contain the cart items and checkout details. But initially, only the
+cart details will be displayed until the user is ready to check out.
+
+The CartItems component::
+--The CartItems component will allow the user to view and update the items
+currently in their cart. It will also give them the option to start the checkout process if
+they are signed in.
+
+Retrieving cart details::
+
+Modifying quantity::
+--Each cart item displayed in the cart view will contain an editable TextField that will
+allow the user to update the quantity for each product they are buying, with a
+minimum allowed value of 1,
+
+Removing items::
+--Each item in the cart will have a remove option next to it. This remove item option is
+a button that, when clicked, passes the array index of the item to the removeItem
+method so that it can be removed from the array.
+
+Showing the total price::
+--At the bottom of the CartItems component, we will display the total price of the
+items in the cart.
+
+Option to check out::
+--The user will see the option to perform the checkout depending on whether they are
+signed in and whether the checkout has already been opened,
+
+--Once the checkout value is set to true in the Cart view, the Checkout component
+will be rendered to allow the user to enter the checkout details and place an order.
+This will complete the buying process for a user, who is now able to add items to
+their shopping cart and modify each item until they are ready to checkout.
+

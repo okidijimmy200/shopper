@@ -31,7 +31,8 @@ const MainRouter = () => {
         <Route path="/signin" component={Signin}/>
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
         <Route path="/user/:userId" component={Profile}/>
-
+{/* Cart Component is the link we use on the Menu to redirect the user to the cart view, which
+contains cart details. */}
         <Route path="/cart" component={Cart}/>
         {/* The Product component can be accessed in the browser at the
 /product/:productID route, which is defined in MainRouter */}
