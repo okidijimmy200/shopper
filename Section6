@@ -74,3 +74,40 @@ will be rendered to allow the user to enter the checkout details and place an or
 This will complete the buying process for a user, who is now able to add items to
 their shopping cart and modify each item until they are ready to checkout.
 
+Lecture 2:
+Using Stripe for payments::
+--Payment processing is required across implementations of the checkout, order
+creation, and order management processes. It also involves making updates to both
+the buyer's and seller's user data.
+
+--Stripe provides an extensive set of tools that are necessary to integrate payments in
+any web application. These tools can be selected and used in different ways,
+depending on the specific type of application and the payment use case being
+implemented.
+
+--In the following sections, we will discuss how to connect a Stripe account for each
+seller, collect credit card details from the user with Stripe Card Elements, use Stripe
+Customer to record the user's payment information securely, and create a charge with
+Stripe for processing a payment.
+
+Stripe-connected account for each seller::
+--To create charges on behalf of sellers, the application will let a user, who is a seller,
+connect their Stripe account to their MERN Marketplace user account.
+--will implement this functionality by updating the user model
+so that it can store Stripe credentials, add the view components to allow users to
+connect to Stripe, and add a backend API to complete Stripe OAuth before updating
+the database with the retrieved credentials from Stripe
+
+Updating the user model::
+--When a seller connects their Stripe account to the marketplace, we will need to store
+their Stripe credentials with their other user details so that they can be used later for
+payment processing when they sell products.
+
+
+Button to connect with Stripe::
+
+
+The StripeConnect component::
+--The StripeConnect component will basically complete the remaining auth process
+steps with Stripe and render the relevant messages based on whether the Stripe
+connection was successful

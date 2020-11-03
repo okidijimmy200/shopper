@@ -67,6 +67,8 @@ can add a product to a shop they own */}
 the route to the EditProduct view */}
         <PrivateRoute path="/seller/:shopId/:productId/edit" component={EditProduct}/>
 
+{/* The MERN Marketplace redirect URI is set to /seller/stripe/connect, which will
+render the StripeConnect component. */}
         <Route path="/seller/stripe/connect" component={StripeConnect}/>
       </Switch>
     </div>)

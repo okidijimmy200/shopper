@@ -114,6 +114,11 @@ as a promise */
     }
   }
   
+  /**The stripeUpdate fetch method is defined in api-user.js and passes the auth
+code retrieved from Stripe to an API we will set up in our server */
+////////////////////////////////////////////////////////////////////////////////////////
+/**This fetch method is calling a backend API that we have to add on our server to
+complete the OAuth process and save the retrieved credentials to the database */
   const stripeUpdate = async (params, credentials, auth_code, signal) => {
     try {
       let response = await fetch ('/api/stripe_auth/'+params.userId, {

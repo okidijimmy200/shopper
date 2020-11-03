@@ -24,6 +24,8 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+/**When Stripe redirects the user to this URL, we will render the StripeConnect
+component so that it handles Stripe's response to authentication */
 export default function StripeConnect(props){
   const classes = useStyles()
   const [values, setValues] = useState({
@@ -32,17 +34,24 @@ export default function StripeConnect(props){
     connected: false
   })
   const jwt = auth.isAuthenticated()
+  /**When the StripeConnect component loads, we will use a useEffect hook to parse
+the query parameters attached to the URL from the Stripe redirect */
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
-
+/**For parsing, we use the same query-string node module that we used previously
+to implement a product search. */
     const parsed = queryString.parse(props.location.search)
     if(parsed.error){
       setValues({...values, error: true})
     }
+    /**if the URL query parameter contains an auth code and not an error, we make an API call in order to complete the Stripe OAuth
+from our server with the stripeUpdate fetch method. */
     if(parsed.code){
       setValues({...values, connecting: true, error: false})
       //post call to stripe, get credentials and update user data
+      /**The stripeUpdate fetch method is defined in api-user.js and passes the auth
+code retrieved from Stripe to an API we will set up in our server */
       stripeUpdate({
         userId: jwt.user._id
       }, {

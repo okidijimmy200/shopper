@@ -39,6 +39,13 @@ information relevant to the seller */
         type: Boolean,
         default: false
       },
+    /**When a seller connects their Stripe account to the marketplace, we will need to store
+their Stripe credentials with their other user details so that they can be used later for
+payment processing when they sell products. */
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**This stripe_seller field will store the seller's Stripe account credentials that were
+received from Stripe on authentication. This will be used when a charge needs to be
+processed via Stripe for a product they sold from their shop. */
       stripe_seller: {},
       stripe_customer: {}
     

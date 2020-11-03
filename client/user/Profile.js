@@ -112,14 +112,34 @@ current user is viewing their own profile. */}
 views the profile of other users, */
              auth.isAuthenticated().user && auth.isAuthenticated().user._id == user._id &&
              (<ListItemSecondaryAction>
+               {/* In the user profile page of a seller, if the user has not connected their Stripe account
+yet, we will show a button that will take the user to Stripe to authenticate and connect
+their Stripe account. */}
+{/* ------------------------------------------------------------- */}
+{/* The code that's added to the Profile component will check whether the user is a
+seller before rendering the Stripe-related button. */}
                {user.seller &&
+              /**a second check will confirm
+whether Stripe credentials already exist in the stripe_seller field for the given
+user. If Stripe credentials already exist for the user, then the disabled STRIPE
+CONNECTED button is shown; otherwise, a link to connect to Stripe using their OAuth
+link is displayed instead, */
                  (user.stripe_seller
+                  /**If the user has successfully connected their Stripe account already, we will show a
+disabled STRIPE CONNECTED button instead */
                    ? (<Button variant="contained" disabled className={classes.stripe_connected}>
                        Stripe connected
                       </Button>)
+                      /**The OAuth link takes the platform's client ID, which we will set in a config variable,
+and other option values as query parameters. This link takes the user to Stripe and
+allows the user to connect an existing Stripe account or create a new one */
                    : (<a href={"https://connect.stripe.com/oauth/authorize?response_type=code&client_id="+config.stripe_connect_test_client_id+"&scope=read_write"} className={classes.stripe_connect}>
                        <img src={stripeButton}/>
                       </a>)
+                      /**Once
+Stripe's auth process has completed, it returns to our application using a redirect URL
+set in the platform's Connect settings in the dashboard on Stripe. Stripe attaches either
+an auth code or an error message as query parameters to the redirect URL. */
                   )
                 }
                <Link to={"/user/edit/" + user._id}>
