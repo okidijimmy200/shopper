@@ -1,7 +1,9 @@
-//temp code
 import {Order, CartItem} from '../models/order.model'
 import errorHandler from './../helpers/dbErrorHandler'
 
+/**This method takes the
+order details, creates a new order, and saves it to the Order collection in
+MongoDB. */
 const create = async (req, res) => {
   try {
     req.body.order.user = req.profile

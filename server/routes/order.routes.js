@@ -9,7 +9,11 @@ import userCtrl from '../controllers/user.controller'
 const router = express.Router()
 
 router.route('/api/orders/:userId')
-  .post(authCtrl.requireSignin, userCtrl.stripeCustomer, productCtrl.decreaseQuantity, orderCtrl.create)
+  .post(
+    authCtrl.requireSignin, // It is ensured that the current user is signed in.
+    userCtrl.stripeCustomer, //A Stripe Customer is either created or updated using the stripeCustomer user controller method,
+    productCtrl.decreaseQuantity, // The stock quantities are updated for all the ordered products using the decreaseQuanity product controller method
+    orderCtrl.create) // The order is created in the Order collection with the create order controller method
 
 router.route('/api/orders/shop/:shopId')
   .get(authCtrl.requireSignin, shopCtrl.isOwner, orderCtrl.listByShop)
@@ -32,6 +36,11 @@ router.route('/api/order/status/:shopId')
 router.route('/api/order/:orderId')
   .get(orderCtrl.read)
 
+  /**To retrieve the user associated with the :userId parameter in the route, we will use
+the userByID user controller method */
+//////////////////////////////////////////
+/**The userByID method gets the user from the User collection and attaches it to the request object so that it can be accessed by the next few methods ie product
+controller method to decrease stock quantities and the order controller method to save a new order to the database */
 router.param('userId', userCtrl.userByID)
 router.param('shopId', shopCtrl.shopByID)
 router.param('productId', productCtrl.productByID)

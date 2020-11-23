@@ -194,7 +194,14 @@ before being sent back in the response. */
   }
 }
 
+/**When an order is placed, we will decrease the stock quantity of each product ordered
+according to the quantity ordered by the user. This will automatically reflect the
+updated quantities of the products in the associated shops after an order is placed */
 const decreaseQuantity = async (req, res, next) => {
+  /**The multiple updateOne operations that are
+required are listed in bulkOps using the map function. This will be faster than
+sending multiple independent save or update operations because with bulkWrite(),
+there is only one round trip to MongoDB. */
   let bulkOps = req.body.order.products.map((item) => {
     return {
         "updateOne": {
@@ -204,7 +211,13 @@ const decreaseQuantity = async (req, res, next) => {
     }
    })
    try {
+     /**Since the update operation, in this case, involves a bulk update of multiple products
+in the collection after matching with an array of products ordered, we use the
+bulkWrite method in MongoDB to send multiple updateOne operations to the
+MongoDB server with one command */
      await Product.bulkWrite(bulkOps, {})
+     /**the next method is
+invoked to save the new order in the database. */
      next()
    } catch (err){
       return res.status(400).json({

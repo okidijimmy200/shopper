@@ -1,10 +1,15 @@
-//temp code
 import mongoose from 'mongoose'
+/**The CartItem schema will represent each product that was ordered when an order
+was placed. It will contain a reference to the product, the quantity of the product that
+was ordered by the user, a reference to the shop the product belongs to, and its status, */
 const CartItemSchema = new mongoose.Schema({
   product: {type: mongoose.Schema.ObjectId, ref: 'Product'},
   quantity: Number,
   shop: {type: mongoose.Schema.ObjectId, ref: 'Shop'},
   status: {type: String,
+    /**The status of the product can only have the values defined in the enums, with the
+default value set to "Not Processed". This represents the current state of the product
+order, as updated by the seller */
     default: 'Not processed',
     enum: ['Not processed' , 'Processing', 'Shipped', 'Delivered', 'Cancelled']}
 })

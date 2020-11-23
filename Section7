@@ -90,5 +90,34 @@ timestamps, and an array of products ordered
 --The fields in this schema definition will enable us to store the necessary details for
 each order
 
+Lecture 4:
+The CartItem schema::
+--The CartItem schema will represent each product that was ordered when an order
+was placed. It will contain a reference to the product, the quantity of the product that
+was ordered by the user, a reference to the shop the product belongs to, and its status,
 
+--The Order schema and CartItem schema defined here will allow us to record details
+about the customer and products that were ordered as required to complete the
+purchase steps for the products that were bought by a user
+
+Create order API::
+--The create order API in the backend will take a POST request from the frontend to
+create the order in the database
+
+Decrease product stock quantity::
+--When an order is placed, we will decrease the stock quantity of each product ordered
+according to the quantity ordered by the user. This will automatically reflect the
+updated quantities of the products in the associated shops after an order is placed.
+
+Create controller method::
+--create controller is the last method
+that's invoked when the create order API receives a request.
+--This method takes the
+order details, creates a new order, and saves it to the Order collection in
+MongoDB.
+
+--With this implemented, orders can be created and stored in the backend by any
+signed-in user on the MERN Marketplace. Now, we can set up APIs to fetch lists of
+orders by user, orders by shop, or read an individual order and display the fetched
+data to views in the frontend.
 
