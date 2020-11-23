@@ -47,6 +47,12 @@ payment processing when they sell products. */
 received from Stripe on authentication. This will be used when a charge needs to be
 processed via Stripe for a product they sold from their shop. */
       stripe_seller: {},
+
+/**To keep track of the corresponding Stripe Customer information for a user in our database, we will update the user model with
+the following field: */
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**This field will store a Stripe Customer object that will allow us to create recurring
+charges and track multiple charges associated with the same user in our platform. */
       stripe_customer: {}
     
     /**NB:The actual password string is not stored directly in the database for security purposes

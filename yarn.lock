@@ -4608,10 +4608,10 @@ react-router@5.1.2:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-stripe-elements@6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/react-stripe-elements/-/react-stripe-elements-6.1.1.tgz#94fca1afc5d9497d9443020b7aed0527e1174893"
-  integrity sha512-/ZIYuv3bjeDnCSruKL7TMh+C+Ltrz/p0o1jyveLXeG4pSyB5Dv+ybehfx0dIZV4Kd0jXTDc86GU7eCHBzmeLgQ==
+react-stripe-elements@^6.1.2:
+  version "6.1.2"
+  resolved "https://registry.yarnpkg.com/react-stripe-elements/-/react-stripe-elements-6.1.2.tgz#bd277e86d0b868a6fac9358df09e0d38149b6736"
+  integrity sha512-gYbYhVVJm3Woc84TgmuiqUj44rI/BZGUVUTTmS0U6kZyZa5fYMPlKKIsVZdQZufQ7Ab4BXLO2LSxBlGY0s2jew==
   dependencies:
     prop-types "15.7.2"
 
@@ -4760,7 +4760,7 @@ repeat-string@^1.6.1:
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
   integrity sha1-jcrkcOHIirwtYA//Sndihtp15jc=
 
-request@2.88.2:
+request@^2.88.2:
   version "2.88.2"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
   integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==
@@ -5270,10 +5270,10 @@ strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
-stripe@8.38.0:
-  version "8.38.0"
-  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.38.0.tgz#0b673a690be8fac79026c33fa656a3a2e3a49ee9"
-  integrity sha512-dhYHHJMJIOTtP9f1IaOKt+RKFSiSci2q2oNrRM3HLMNFi6ahZvMWKE2+bLetwFa4CZZLt9x2SXM7dPrL3KRVng==
+stripe@^8.125.0:
+  version "8.125.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.125.0.tgz#61b8d4b08b810ef2aa30af7e4342c5072233853c"
+  integrity sha512-5M4r7X1ddKtuDcT+LdnyhPg4mi3S6SQTgJ5Zq4R3Oh2zpSXQZwwA9Yg0bd7Ej0AIMS3WZn/h6yLU2nvrM9OWjg==
   dependencies:
     "@types/node" ">=8.1.0"
     qs "^6.6.0"

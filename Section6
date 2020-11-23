@@ -111,3 +111,73 @@ The StripeConnect component::
 --The StripeConnect component will basically complete the remaining auth process
 steps with Stripe and render the relevant messages based on whether the Stripe
 connection was successful
+
+Lecture 3:
+The stripe auth update API::
+--Once the Stripe account has been connected, to complete the OAuth process, we need
+to make a POST API call to Stripe OAuth from our server. We need to send the
+previously retrieved auth code to Stripe OAuth with the POST API call and receive
+the credentials to be stored in the seller's user account for processing charges. We will
+achieve this Stripe auth update by implementing an update API in the backend.
+
+--To make a POST request to the Stripe API from our server, we will use the request
+node module,
+
+************yarn add request********8
+
+-These auth credentials retrieved from Stripe can be used in our application to create
+charges on customer credit cards on behalf of the seller when they sell products from
+their shops
+
+Lecture 4:
+Stripe Card Elements for checkout::
+--During checkout, to collect credit card details from the user, we will use Stripe's Card
+Elements to add the credit card field to the checkout form. To integrate Card
+Elements with our React interface, we will utilize the react-stripeelements
+node module
+
+**********yarn add react-stripe-elements************8
+
+--We will also need to inject the Stripe.js code into template.js to access Stripe in
+the frontend code
+
+<script id="stripe-js" src="https://js.stripe.com/v3/"></script>
+
+--For the MERN Marketplace, Stripe will be required in the Cart view, where the
+Checkout component needs it to render Card Elements and process card detail
+input. We will wrap the Checkout component we added to Cart.js with the
+StripeProvider component from react-stripe-elements so that the Elements
+component in Checkout has access to the Stripe instance.
+
+Lecture 5
+Stripe Customer for recording card details::
+--When an order is being placed at the end of the checkout process, the generated card
+token will be used to create or update a Stripe Customer.
+
+--To integrate
+Stripe Customer with our application, in the following sections, we will update the
+user model so that it stores Stripe Customer details and update the user controller
+methods so that we can create or update Stripe Customer information using the Stripe
+node module in the backend.
+
+Updating the user model::
+--To use Stripe Customer to securely store the credit card information of each user and
+process payments as needed in the application, we need to store details of the Stripe
+Customer associated with each user
+
+Updating the user controller::
+
+..yarn add stripe************88
+
+Updating an existing Stripe Customer::
+--Once a Stripe Customer has been created, we can update
+the Stripe Customer the next time a user enters credit card details for a new order
+
+Creating a charge for each product that's processed::
+--When a seller updates an order by processing the product that was ordered in their
+shop, the application will create a charge on behalf of the seller on the customer's
+credit card for the cost of the product ordered.
+
+--The createCharge controller method will be called when the server receives a
+request to update an order with a product status change to Processing.
+

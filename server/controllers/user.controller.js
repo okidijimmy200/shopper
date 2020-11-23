@@ -3,8 +3,11 @@ import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
 import request from 'request'
 import config from './../../config/config'
+//e stripe module, it needs to be imported into the user controller file.
 import stripe from 'stripe'
 
+/**stripe instance needs to be initialized with the application's Stripe
+secret key */
 const myStripe = stripe(config.stripe_test_secret_key)
 /**--errorHandler helper to respond to route
 requests with meaningful messages when a Mongoose error occurs */
@@ -114,6 +117,10 @@ const isSeller = (req, res, next) => {
   next()
 }
 
+/**The POST API call to Stripe takes the platform's secret key and the retrieved auth
+code to complete the authorization. Then, it returns the credentials for the connected
+account in body, which is then appended to the request body so that the user's details
+can be updated in the next() call to the update controller method */
 const stripe_auth = (req, res, next) => {
   request({
     url: "https://connect.stripe.com/oauth/token",
@@ -132,9 +139,15 @@ const stripe_auth = (req, res, next) => {
   })
 }
 
+/**We will create a new, or update an existing, Stripe Customer when the user places an
+order after entering their credit card details */
+/**will be called before the order
+is created when our server receives a request to the create order API */
 const stripeCustomer = (req, res, next) => {
   if(req.profile.stripe_customer){
       //update stripe customer
+/**Once a Stripe Customer has been created, we can update
+the Stripe Customer the next time a user enters credit card details for a new order */
       myStripe.customers.update(req.profile.stripe_customer, {
           source: req.body.token
       }, (err, customer) => {
@@ -143,14 +156,24 @@ const stripeCustomer = (req, res, next) => {
             error: "Could not update charge details"
           })
         }
+/**Once the Stripe Customer has been successfully updated, we will add the Customer
+ID to the order being created in the next() call */
         req.body.order.payment_id = customer.id
         next()
       })
   }else{
+    /**The stripeCustomer controller method will check whether the current user already
+has a corresponding Stripe Customer stored in the database, and then use the card
+token received from the frontend to either create a new Stripe Customer or update the
+existing one, as discussed in the following sections */
       myStripe.customers.create({
             email: req.profile.email,
             source: req.body.token
       }).then((customer) => {
+/**If the Stripe Customer is successfully created, we will update the current user's data
+by storing the Stripe Customer ID reference in the stripe_customer field. We will
+also add this Customer ID to the order being placed so that it is simpler to create a
+charge related to the order */
           User.update({'_id':req.profile._id},
             {'$set': { 'stripe_customer': customer.id }},
             (err, order) => {
@@ -166,12 +189,22 @@ const stripeCustomer = (req, res, next) => {
   }
 }
 
+/**When a seller updates an order by processing the product that was ordered in their
+shop, the application will create a charge on behalf of the seller on the customer's
+credit card for the cost of the product ordered wch uses Stripe's create a charge API and needs
+the seller's Stripe account ID, along with the buyer's Stripe Customer ID */
 const createCharge = (req, res, next) => {
   if(!req.profile.stripe_seller){
+/**If the seller has not connected their Stripe account yet, the createCharge method
+will return a 400 error response to indicate that a connected Stripe account is
+required */
     return res.status('400').json({
       error: "Please connect your Stripe account"
     })
   }
+  /**To be able to charge the Stripe Customer on behalf of the seller's Stripe account, we
+need to generate a Stripe token with the Customer ID and the seller's Stripe account
+ID and then use that token to create a charge */
   myStripe.tokens.create({
     customer: req.order.payment_id,
   }, {

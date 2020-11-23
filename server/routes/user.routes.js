@@ -15,7 +15,13 @@ router.route('/api/users/:userId')
  // --route for update and delete requires both authentication and authorization
   .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.update)
   .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove)
-router.route('/api/stripe_auth/:userId')
+/**This Stripe auth update API will receive a PUT request and initiate the POST API call to retrieve the
+credentials from Stripe */
+///////////////////////////////////////////////////////
+/**A request to this route uses the stripe_auth controller method to retrieve the
+credentials from Stripe and passes it to the existing user update method so that it can
+be stored in the database */
+  router.route('/api/stripe_auth/:userId')
   .put(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.stripe_auth, userCtrl.update)
 
 router.param('userId', userCtrl.userByID)
