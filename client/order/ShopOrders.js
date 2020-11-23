@@ -1,4 +1,3 @@
-//temp code
 import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -42,7 +41,11 @@ export default function ShopOrders({match}) {
   const [orders, setOrders] = useState([])
   const [open, setOpen] = useState(0)
 
-
+/**When the ShopOrders component mounts in the view, we will retrieve the list of
+orders for the provided shop ID from the database and set it to the state to be
+rendered in the view. We will make a request to the backend API to list orders by
+shop using the listByShop fetch method and set the retrieved orders to the state in a
+useEffect hook, */
     const jwt = auth.isAuthenticated()
     useEffect(() => {
       const abortController = new AbortController()
@@ -64,7 +67,9 @@ export default function ShopOrders({match}) {
   const handleClick = index => event => {
     setOpen(index)
   }
-
+/**The updateOrders method is
+passed as a prop to the ProductOrderEdit component so that the status can be
+updated when a product status is changed. */
   const updateOrders = (index, updatedOrder) => {
     let updatedOrders = orders
     updatedOrders[index] = updatedOrder
@@ -78,12 +83,17 @@ export default function ShopOrders({match}) {
           Orders in {match.params.shop}
         </Typography>
         <List dense >
+          {/* we will iterate through the list of orders and render each order in a
+collapsible list from Material-UI, which will expand when it's clicked */}
           {orders.map((order, index) => {
             return   <span key={index}>
               <ListItem button onClick={handleClick(index)}>
                 <ListItemText primary={'Order # '+order._id} secondary={(new Date(order.created)).toDateString()}/>
                 {open == index ? <ExpandLess /> : <ExpandMore />}
               </ListItem><Divider/>
+              {/* Each expanded order will show the order details and the ProductOrderEdit
+component. The ProductOrderEdit component will display the purchased products
+and allow the seller to edit the status of each product. */}
               <Collapse component="li" in={open == index} timeout="auto" unmountOnExit>
                 <ProductOrderEdit shopId={match.params.shopId} order={order} orderIndex={index} updateOrders={updateOrders}/>
                 <div className={classes.customerDetails}>

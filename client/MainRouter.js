@@ -46,6 +46,8 @@ take the user to the corresponding Shop view with the shop details loaded. */}
         <Route path="/shops/:shopId" component={Shop}/>
 
         <Route path="/order/:orderId" component={Order}/>
+        {/* PrivateRoute in order to load the ShopOrders component at
+the /seller/orders/:shop/:shopId route */}
         <PrivateRoute path="/seller/orders/:shop/:shopId" component={ShopOrders}/>
 {/* The MyShops component can only be viewed by a signed-in user who is also a seller.
 So we will add a PrivateRoute in the MainRouter component, which will render

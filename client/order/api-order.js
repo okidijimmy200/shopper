@@ -18,7 +18,8 @@ const create = async (params, credentials, order, token) => {
         console.log(err)
       }
   }
-  
+/**This fetch method will
+be used in the ShopOrders component to show the orders for each shop */
   const listByShop = async (params, credentials, signal) => {
     try {
       let response = await fetch('/api/orders/shop/'+params.shopId, {
@@ -34,7 +35,11 @@ const create = async (params, credentials, order, token) => {
       console.log(err)
     }
   }
-  
+ /**The cancelProduct, processCharge, and update fetch methods are defined in
+api-order.js so that they can call the corresponding APIs in the backend to update
+a canceled product's stock quantity, to create a charge on the customer's credit card
+when the order for a product is processing, and to update the order with the product
+status change, respectively */
   const update = async (params, credentials, product) => {
     try {
       let response = await fetch('/api/order/status/' + params.shopId, {

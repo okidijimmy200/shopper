@@ -17,6 +17,10 @@ const create = async (req, res) => {
   }
 }
 
+/**The listByShop controller method will retrieve the orders that have products
+purchased with the matching shop ID, then populate the ID, name, and price fields
+for each product, with orders sorted by date from most recent to
+oldest. */
 const listByShop = async (req, res) => {
   try {
     let orders = await Order.find({"products.shop": req.shop._id})

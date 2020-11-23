@@ -42,6 +42,10 @@ the userByID user controller method */
 /**The userByID method gets the user from the User collection and attaches it to the request object so that it can be accessed by the next few methods ie product
 controller method to decrease stock quantities and the order controller method to save a new order to the database */
 router.param('userId', userCtrl.userByID)
+
+/**To retrieve the shop associated with the :shopId parameter in the route, we will use
+the shopByID shop controller method, which gets the shop from the Shop collection
+and attaches it to the request object so that it can be accessed by the next methods */
 router.param('shopId', shopCtrl.shopByID)
 router.param('productId', productCtrl.productByID)
 router.param('orderId', orderCtrl.orderByID)

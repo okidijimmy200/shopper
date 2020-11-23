@@ -121,3 +121,52 @@ signed-in user on the MERN Marketplace. Now, we can set up APIs to fetch lists o
 orders by user, orders by shop, or read an individual order and display the fetched
 data to views in the frontend.
 
+Lecture 5:
+Listing orders by shop::
+--An important feature of the marketplace is allowing sellers to see and update the
+status of orders they've received for products in their shops. To implement this, we
+will set up backend APIs to list orders by shop and update an order as a seller
+changes the status of a purchased product. Then, we will add some frontend views
+that will display the orders and allow the seller to interact with each order
+
+The list by shop API::
+--we will implement an API to get orders for a specific shop so that
+authenticated sellers can view the orders for each of their shops in one place.
+
+The ShopOrders component::
+--The ShopOrders component will be the view where sellers will be able to see the list
+of orders that have been received for a given shop. In this view, each order will only
+show the purchased products that are relevant to the shop and allow the seller to
+change the status of the ordered product with a dropdown of possible status values,
+
+--In the
+ShopOrders component, we will fetch and list the orders for the given shop, and for
+each order, we'll render the order details along with the list of products that were
+ordered in a React component named ProductOrderEdit.
+
+List orders::
+--When the ShopOrders component mounts in the view, we will retrieve the list of
+orders for the provided shop ID from the database and set it to the state to be
+rendered in the view. We will make a request to the backend API to list orders by
+shop using the listByShop fetch method and set the retrieved orders to the state in a
+useEffect hook,
+
+The ProductOrderEdit component::
+-we will implement a ProductOrderEdit component to render all the
+products in the order with an edit status option.
+
+Handling actions to cancel a product order::
+--If the seller wishes to cancel the order for a product and selects Cancelled from the
+status values dropdown for a specific product in the order, we will call the
+cancelProduct fetch method inside the handleStatusChange method
+
+Handling the action to process charge for a product::
+--If a seller chooses to process the order for a product, we will need to invoke an API
+that will charge the customer for the total cost of the product ordered. So, when a
+seller selects Processing from the status values dropdown for a specific product in the
+order, we will call the processCharge fetch method inside
+the handleStatusChange method,
+
+Handling the action to update the status of a product::
+--how the update order API is invoked if the seller chooses to update the status of a
+product that's been ordered to any value other than Cancelled or Processing
