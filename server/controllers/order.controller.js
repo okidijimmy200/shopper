@@ -35,6 +35,9 @@ const listByShop = async (req, res) => {
   }
 }
 
+/**The update controller method will query the Order collection and find the order with
+the CartItem object that matches the updated product and set the status value of
+this matched CartItem in the products array of the order */
 const update = async (req, res) => {
   try {
     let order = await Order.update({'products._id':req.body.cartItemId}, {'$set': {
@@ -48,6 +51,8 @@ const update = async (req, res) => {
   }
 }
 
+/**The getStatusValues controller method will return the enum values for the
+status field from the CartItem schema */
 const getStatusValues = (req, res) => {
   res.json(CartItem.schema.path('status').enumValues)
 }

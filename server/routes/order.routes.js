@@ -21,6 +21,8 @@ router.route('/api/orders/shop/:shopId')
 router.route('/api/orders/user/:userId')
   .get(authCtrl.requireSignin, orderCtrl.listByUser)
 
+  /**The possible status values of an ordered product are set as enums in the CartItem
+schema. */
 router.route('/api/order/status_values')
   .get(orderCtrl.getStatusValues)
 
@@ -29,7 +31,10 @@ router.route('/api/order/:shopId/cancel/:productId')
 
 router.route('/api/order/:orderId/charge/:userId/:shopId')
   .put(authCtrl.requireSignin, shopCtrl.isOwner, userCtrl.createCharge, orderCtrl.update)
-
+/**When a product's status is changed to any value other than Processing or Cancelled,
+a PUT request to '/api/order/status/:shopId' will directly update the order in
+the database, given that the current user is the verified owner of the shop with the
+ordered product. */
 router.route('/api/order/status/:shopId')
   .put(authCtrl.requireSignin, shopCtrl.isOwner, orderCtrl.update)
 

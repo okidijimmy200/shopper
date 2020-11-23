@@ -40,7 +40,14 @@ api-order.js so that they can call the corresponding APIs in the backend to upda
 a canceled product's stock quantity, to create a charge on the customer's credit card
 when the order for a product is processing, and to update the order with the product
 status change, respectively */
+////////////////////////////////////////////////////
+/**To access this API from the frontend, we will add an update fetch method in apiorder.
+js to make a call to this update API with the required parameters passed
+from the view */
   const update = async (params, credentials, product) => {
+    /**This update fetch method is called in the ProductOrderEdit view when the seller
+selects any value other than Processing or Cancelled from the options in the
+dropdown for an ordered product */
     try {
       let response = await fetch('/api/order/status/' + params.shopId, {
         method: 'PUT',
@@ -91,6 +98,9 @@ status change, respectively */
     }
   }
   
+  /**We will also need to set up a corresponding fetch method in api-order.js, which
+is used in the view, in the ProductOrderEdit component, to make a request to this
+API, retrieve the status values, and render these as options in the dropdown */
   const getStatusValues = async (signal) => {
     try {
       let response = await fetch('/api/order/status_values', {

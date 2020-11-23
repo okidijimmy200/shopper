@@ -1,0 +1,20 @@
+Lecture 1:
+APIs for products ordered::
+--Allowing sellers to update the status of a product will require having to set up four
+different APIs, including an API to retrieve the possible status values. Then, the
+actual status update actions will need APIs to handle updates to the order itself as the
+status is changed in order to initiate related actions, such as increasing the stock
+quantity of a canceled product, and to create a charge on the customer's credit card
+when a product is being processed. In the following sections, we will look at the API
+implementations for retrieving possible status values, updating an order status,
+canceling a product order, and processing a charge for an ordered product.
+
+Get status values::
+--The possible status values of an ordered product are set as enums in the CartItem
+schema.
+
+Update order status::
+--When a product's status is changed to any value other than Processing or Cancelled,
+a PUT request to '/api/order/status/:shopId' will directly update the order in
+the database, given that the current user is the verified owner of the shop with the
+ordered product.
