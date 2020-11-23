@@ -63,9 +63,12 @@ dropdown for an ordered product */
       console.log(err)
     }
   }
-  
+/**From the view, we will use the corresponding fetch method, which is added in apiorder.
+js, to call this cancel product order API. The cancelProduct fetch method */
   const cancelProduct = async (params, credentials, product) => {
     try {
+      /**This cancelProduct fetch method is called in the ProductOrderEdit view when
+the seller selects Cancelled from the dropdown for an ordered product. */
       let response = await fetch('/api/order/'+params.shopId+'/cancel/'+params.productId, {
         method: 'PUT',
         headers: {
@@ -81,8 +84,13 @@ dropdown for an ordered product */
     }
   }
   
+  /**From the view, we will use the processCharge fetch method in api-order.js and
+provide the required route parameter values, credentials, and product details,
+including the amount to charge */
   const processCharge = async (params, credentials, product) => {
     try {
+      /**This processCharge fetch method is called in the ProductOrderEdit view when
+the seller selects Processing from the dropdown for an ordered product */
       let response = await fetch('/api/order/'+params.orderId+'/charge/'+params.userId+'/'+params.shopId, {
         method: 'PUT',
         headers: {

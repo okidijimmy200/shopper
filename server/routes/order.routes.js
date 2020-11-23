@@ -26,6 +26,9 @@ schema. */
 router.route('/api/order/status_values')
   .get(orderCtrl.getStatusValues)
 
+  /**When a seller decides to cancel the order for a product, a PUT request will be sent to
+/api/order/:shopId/cancel/:productId so that the product's stock quantity
+can be increased and the order can be updated in the database. */
 router.route('/api/order/:shopId/cancel/:productId')
   .put(authCtrl.requireSignin, shopCtrl.isOwner, productCtrl.increaseQuantity, orderCtrl.update)
 
@@ -36,6 +39,9 @@ a PUT request to '/api/order/status/:shopId' will directly update the order in
 the database, given that the current user is the verified owner of the shop with the
 ordered product. */
 router.route('/api/order/status/:shopId')
+/**When a seller changes the status of an ordered product to Processing, we will set up a
+backend API to not only update the order but to also create a charge on the
+customer's credit card for the price of the product multiplied by the quantity ordered. */
   .put(authCtrl.requireSignin, shopCtrl.isOwner, orderCtrl.update)
 
 router.route('/api/order/:orderId')
@@ -52,7 +58,13 @@ router.param('userId', userCtrl.userByID)
 the shopByID shop controller method, which gets the shop from the Shop collection
 and attaches it to the request object so that it can be accessed by the next methods */
 router.param('shopId', shopCtrl.shopByID)
+/**To retrieve the product associated with the productId parameter in the route, we
+will also use the productByID product controller method */
 router.param('productId', productCtrl.productByID)
+/**To retrieve the order associated with the orderId parameter in the route, we will use
+the orderByID order controller method, which gets the order from the Order
+collection and attaches it to the request object so that it can be accessed by the next
+methods */
 router.param('orderId', orderCtrl.orderByID)
 
 export default router

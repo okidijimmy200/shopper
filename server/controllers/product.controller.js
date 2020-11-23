@@ -226,7 +226,13 @@ invoked to save the new order in the database. */
    }
 }
 
+/**To update the product's stock quantity when this API receives a request, we will use
+the increaseQuantity controller method, */
 const increaseQuantity = async (req, res, next) => {
+  /**The increaseQuantity controller method finds the product by the matching ID in
+the Product collection and increases the quantity value by the quantity that was
+ordered by the customer. It does this now that the order for this product has been
+canceled */
   try {
     await Product.findByIdAndUpdate(req.product._id, {$inc: {"quantity": req.body.quantity}}, {new: true})
     .exec()

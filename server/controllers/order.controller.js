@@ -57,6 +57,10 @@ const getStatusValues = (req, res) => {
   res.json(CartItem.schema.path('status').enumValues)
 }
 
+/**The process charge API will receive a PUT request at
+/api/order/:orderId/charge/:userId/:shopId. After successfully
+authenticating the user, it will create the charge by calling the createCharge user
+controller */
 const orderByID = async (req, res, next, id) => {
   try {
     let order = await Order.findById(id).populate('products.product', 'name price').populate('products.shop', 'name').exec()
