@@ -46,7 +46,10 @@ const PlaceOrder = (props) => {
     redirect: false,
     orderId: ''
   })
-
+/**Clicking on the Place Order button will call the placeOrder method, which will
+attempt to tokenize the card details using stripe.createToken. If this is
+unsuccessful, the user will be informed of the error, but if this is successful, then the
+checkout details and generated card token will be sent to our server's create order API */
   const placeOrder = ()=>{
     props.stripe.createToken().then(payload => {
       if(payload.error){
@@ -68,8 +71,11 @@ const PlaceOrder = (props) => {
   })
 }
 
+/**view, which will show them the details of the order that was just placed. */
 
     if (values.redirect) {
+      /**To
+implement this redirect, we can use the Redirect component from React Router, */
       return (<Redirect to={'/order/' + values.orderId}/>)
     }
     return (
@@ -104,6 +110,7 @@ care of */}
               {values.error}
           </Typography>)
         }
+        {/* placeorder btn */}
         <Button color="secondary" variant="contained" onClick={placeOrder}>Place Order</Button>
       </div>
     </span>)

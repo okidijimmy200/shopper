@@ -72,7 +72,13 @@ returning the updated cart array. */
       }
       return cart
     },
+    /**If the request to the create order API is successful, we will empty the cart in
+localStorage so that the user can add new items to the cart and place a new order if
+desired. */
     emptyCart(cb) {
+/**The emptyCart method removes the cart object from localStorage and updates the
+state of the view by executing the callback passed to it from the placeOrder method,
+where it is invoked */
       if (typeof window !== "undefined") {
         localStorage.removeItem('cart')
         cb()

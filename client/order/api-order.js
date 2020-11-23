@@ -1,4 +1,7 @@
-//temp code
+/**The create fetch method that we invoked in the placeOrder here to make a POST request to the create
+order API in the backend is defined in client/order/api-order.js. It takes the
+checkout details, the card token, and user credentials as parameters and sends them
+to the API */
 const create = async (params, credentials, order, token) => {
     try {
       let response = await fetch('/api/orders/'+params.userId, {

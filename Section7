@@ -54,3 +54,20 @@ with injectStripe before exporting it
 
 The CardElement component::
 
+Lecture 2:
+Adding a button to place an order::
+--Clicking on the Place Order button will call the placeOrder method, which will
+attempt to tokenize the card details using stripe.createToken. If this is
+unsuccessful, the user will be informed of the error, but if this is successful, then the
+checkout details and generated card token will be sent to our server's create order API
+
+Empty cart::
+--If the request to the create order API is successful, we will empty the cart in
+localStorage so that the user can add new items to the cart and place a new order if
+desired.
+
+Redirecting to the order view::
+--view, which will show them the details of the order that was just placed.
+
+
+
