@@ -1,0 +1,56 @@
+Lecture 1:
+Integrating the checkout process
+--Users who are signed in and have items added to their cart will be able to start the
+checkout process. We will add a Checkout form to collect customer details, delivery
+address information, and credit card information
+
+--This checkout view will consist of two parts, with the first part for collecting buyer
+details including name, email, and delivery address, and the second part for entering
+credit card details and placing the order.
+
+Initializing checkout details::
+--we will create the checkout view, which contains the form fields and
+the place order option in a Checkout component. In this component, we will
+initialize the checkoutDetails object in the state before collecting the details from
+the form. We will prepopulate the customer details based on the current user's details
+and add the current cart items to checkoutDetails
+
+--These customer information values, which are initialized in checkoutDetails, will
+be updated when the user interacts with the form fields.
+
+Customer information::
+--When the user updates the values in these two fields,
+the handleCustomerChange method will update the relevant details in the state.
+
+Delivery address:
+--To collect the delivery address from the user, we will add fields to collect address
+details such as the street address, city, state, zip code, and country name to the
+checkout form.
+
+--With these text fields and handle change functions in place, the checkoutDetails
+object in the state will contain the customer information and delivery address that
+was entered by the user.
+
+Placing an order::
+--The remaining steps of the checkout process will involve collecting the user's credit
+card details securely, thus allowing the user to place the order, emptying the cart
+from storage, and redirecting the user to a view with the order details.
+
+--building a PlaceOrder component we will use
+Stripe Card Elements to collect credit card details, add a place order button for the
+user to complete the checkout process, utilize a cart helper method to empty the cart,
+and redirect the user to an order view.
+
+Using Stripe Card Elements::
+--In order to use Stripe's CardElement component from react-stripe-elements to
+add the credit card field to the PlaceOrder component, we need to wrap the
+PlaceOrder component using the injectStripe higher-order component (HOC)
+from Stripe.
+
+--This is because the CardElement component needs to be part of a payment form
+component that is built with injectStripe and also wrapped with the Elements
+component. So, when we create a component called PlaceOrder, we will wrap it
+with injectStripe before exporting it
+
+The CardElement component::
+

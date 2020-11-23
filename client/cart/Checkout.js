@@ -1,4 +1,3 @@
-///temp code
 import React, {useState, useEffect} from 'react'
 import Card from '@material-ui/core/Card'
 import {makeStyles} from '@material-ui/core/styles'
@@ -43,6 +42,8 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+/**create the checkout view, which contains the form fields and
+the place order option in a Checkout component */
 export default function Checkout (){
   const classes = useStyles()
   const user = auth.isAuthenticated().user
@@ -55,13 +56,18 @@ export default function Checkout (){
     },
     error: ''
   })
-
+/**When the user updates the values in these two fields,
+the handleCustomerChange method will update the relevant details in the state */
+///////////////////////////////////////////////////////////////////
+/**This will allow the user to update the name and email of the customer that this order
+is associated with. */
   const handleCustomerChange = name => event => {
     let checkoutDetails = values.checkoutDetails
     checkoutDetails[name] = event.target.value || undefined
     setValues({...values, checkoutDetails: checkoutDetails})
   }
-
+/**When the user updates these address fields, the handleAddressChange method will
+update the relevant details in the state */
   const handleAddressChange = name => event => {
     let checkoutDetails = values.checkoutDetails
     checkoutDetails.delivery_address[name] = event.target.value || undefined
@@ -73,11 +79,16 @@ export default function Checkout (){
         <Typography type="title" className={classes.title}>
           Checkout
         </Typography>
+        {/* we will have fields for collecting the customer's name and email
+address */}
         <TextField id="name" label="Name" className={classes.textField} value={values.checkoutDetails.customer_name} onChange={handleCustomerChange('customer_name')} margin="normal"/><br/>
         <TextField id="email" type="email" label="Email" className={classes.textField} value={values.checkoutDetails.customer_email} onChange={handleCustomerChange('customer_email')} margin="normal"/><br/>
         <Typography type="subheading" component="h3" className={classes.subheading}>
             Delivery Address
         </Typography>
+        {/* To collect the delivery address from the user, we will add fields to collect address
+details such as the street address, city, state, zip code, and country name to the
+checkout form */}
         <TextField id="street" label="Street Address" className={classes.streetField} value={values.checkoutDetails.delivery_address.street} onChange={handleAddressChange('street')} margin="normal"/><br/>
         <TextField id="city" label="City" className={classes.addressField} value={values.checkoutDetails.delivery_address.city} onChange={handleAddressChange('city')} margin="normal"/>
         <TextField id="state" label="State" className={classes.addressField} value={values.checkoutDetails.delivery_address.state} onChange={handleAddressChange('state')} margin="normal"/><br/>
@@ -89,6 +100,9 @@ export default function Checkout (){
                 {values.error}</Typography>)
           }
         <div>
+          {/* we will add this PlaceOrder component in the Checkout form, pass it the
+checkoutDetails object as a prop, and wrap it with the Elements component from
+react-stripe-elements */}
           <Elements>
             <PlaceOrder checkoutDetails={values.checkoutDetails} />
           </Elements>

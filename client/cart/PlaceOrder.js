@@ -77,6 +77,9 @@ const PlaceOrder = (props) => {
       <Typography type="subheading" component="h3" className={classes.subheading}>
         Card details
       </Typography>
+      {/* Stripe's CardElement is self-contained, so we can just add it to the PlaceOrder
+component, then incorporate styles as desired, and the card detail input will be taken
+care of */}
       <CardElement
         className={classes.StripeElement}
           {...{style: {
@@ -106,8 +109,15 @@ const PlaceOrder = (props) => {
     </span>)
 
 }
+/**In order to use Stripe's CardElement component from react-stripe-elements to
+add the credit card field to the PlaceOrder component, we need to wrap the
+PlaceOrder component using the injectStripe higher-order component (HOC)
+from Stripe */
 PlaceOrder.propTypes = {
   checkoutDetails: PropTypes.object.isRequired
 }
 
+/**The injectStripe HOC provides the props.stripe property that manages the
+Elements group. This will allow us to call props.stripe.createToken within
+PlaceOrder to submit card details to Stripe and get back the card token */
 export default injectStripe(PlaceOrder)
