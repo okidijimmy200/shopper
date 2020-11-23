@@ -1,0 +1,33 @@
+Adding Real-Time Bidding Capabilities to the Marketplace
+In this chapter, we will extend the online marketplace application by covering the
+following topics:
+--Introducing real-time bidding in the MERN Marketplace
+--Adding auctions to the marketplace
+--Displaying the auction view
+--Implementing real-time bidding with Socket.IO
+
+Lecture 1:
+Introducing real-time bidding in the MERN Marketplace.
+--In this chapter, we
+will extend these functionalities to allow sellers to create auctions for items that other
+users can place bids on in a fixed duration of time. The auction view will describe the
+item for sale and let signed in users place bids when the auction is live.
+
+--Different users can place their own bids, and also see other users placing bids in real-time, with
+the view updating accordingly.
+
+Adding auctions to the marketplace::
+--we will allow a user who is signed in and has an active seller account to create auctions for items that they want other users to place bids on.
+--To enable the features of adding and managing auctions, we will need to define how
+to store auction details and implement the full-stack slices that will let users create,
+access and update auctions on the platform.
+
+Defining an Auction model::
+--The Auction Schema in this model will have fields to store auction details
+such as the name and description of the item being auctioned, along with an image
+and a reference to the seller creating this auction. It will also have fields that specify
+the start and end time for bidding on this auction, a starting value for bids, and the
+list of bids that have been placed for this auction.
+
+--These auction-related fields will allow us to implement auction and bidding-related
+features for the MERN Marketplace application.

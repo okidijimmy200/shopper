@@ -37,3 +37,9 @@ customer's credit card for the price of the product multiplied by the quantity o
 for their products in each of their shops and easily update the status of each product
 ordered while the application takes care of additional tasks, such as updating stock
 quantity and initiating payment
+
+Lecture 3:
+Viewing single-order details::
+--With the Order collection and the database access all set up, moving forward, it is
+easy to add the features of listing orders for each user and showing details of a single
+order in a separate view where the user can track the status of each ordered product.
