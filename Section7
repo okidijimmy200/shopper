@@ -69,5 +69,26 @@ desired.
 Redirecting to the order view::
 --view, which will show them the details of the order that was just placed.
 
+Lecture 3:
+Creating a new order::
+--When a user places an order, the details of the order that were confirmed at checkout
+will be used to create a new order record in the database, update or create a Stripe
+Customer for the user, and decrease the stock quantities of products ordered.
+
+Defining an Order model::
+--To store the orders in the backend, we will define a Schema for the order model that
+will record order details including the customer details, payment information, and an
+array of the products ordered. The structure of each product in this array of products
+ordered will be defined in a separate subschema called CartItemSchema.
+
+The Order schema::
+--The Order schema defined in server/models/course.model.js will contain fields
+for storing the customer's name and email, along with their user account reference,
+delivery address information, payment reference, created and updated-at
+timestamps, and an array of products ordered
+
+--The fields in this schema definition will enable us to store the necessary details for
+each order
+
 
 
