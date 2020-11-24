@@ -39,6 +39,8 @@ data */
   })
 }
 
+/**It retrieves the auction from the database and attaches it to the request object
+so that it can be used in the next method. */
 const auctionByID = async (req, res, next, id) => {
   try {
     let auction = await Auction.findById(id).populate('seller', '_id name').populate('bids.bidder', '_id name').exec()
@@ -70,7 +72,11 @@ const defaultPhoto = (req, res) => {
   return res.sendFile(process.cwd()+defaultImage)
 }
 
+/**The read controller
+method, which returns this auction object in response to the client, */
 const read = (req, res) => {
+  /**We are removing the image field before sending the response, since images will be
+retrieved as files in separate routes. */
   req.auction.image = undefined
   return res.json(req.auction)
 }
@@ -102,6 +108,8 @@ const update = (req, res) => {
   })
 }
 
+/**The remove function retrieves the auction and uses the remove()
+query to delete the user from the database */ 
 const remove = async (req, res) => {
   try {
     let auction = req.auction
@@ -168,6 +176,9 @@ bidder. */
   }
 }
 
+/**The auction object that's retrieved from the database will also contain the name and ID details of the seller and bidders, as we specified in the populate() methods. For
+these API endpoints, the auction object is used next to verify that the currently signed-in user is the seller who created this given auction by invoking the isSeller
+method */
 const isSeller = (req, res, next) => {
   const isSeller = req.auction && req.auth && req.auction.seller._id == req.auth._id
   if(!isSeller){
@@ -175,6 +186,8 @@ const isSeller = (req, res, next) => {
       error: "User is not authorized"
     })
   }
+  /**Once the seller has been verified, the next method is invoked to either update or
+delete the auction, depending on whether a PUT or DELETE request was received */
   next()
 }
 

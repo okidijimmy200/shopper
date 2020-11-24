@@ -87,5 +87,34 @@ The Auctions by seller API::
 auctions from the database, we will define a backend API that accepts a GET request
 and queries the Auction collection so that it returns the auctions by a specific seller.
 
+Lecture 5:
+The Auctions component::
+--The different auction lists in the application will be rendered using a React
+component that takes an array of auction objects as props. We will implement this
+reusable Auctions component and add it to the views that will retrieve and display
+either the open auctions, auctions by a bidder, or auctions by a seller.
+
+--This Auctions component, which renders a list of auctions with the details and a
+status of each, can be added to other views that will display different auction lists. If
+the user who's currently viewing an auction list happens to be a seller for a given
+auction in the list, we also want to render the option to edit or delete the auction to
+this user.
+
+Editing and deleting auctions::
+--A seller in the marketplace will be able to manage their auctions by either editing or
+deleting an auction that they've created. The implementations of the edit and delete
+features will require building backend APIs that save changes to the database and
+remove an auction from the collection.
+
+Updating the list view::
+--We will update the code for the auctions list view to conditionally show the edit and
+delete options to the seller. In the Auctions component, which is where a list of
+auctions is iterated over to render each item in ListItem, we will add two more
+options in the ListItemSecondaryAction component
+
+Edit and delete auction APIs::
+--To complete the edit auction and delete auction operations initiated by sellers from
+the frontend, we need to have the corresponding APIs in the backend.
+
 
 

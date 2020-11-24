@@ -1,0 +1,21 @@
+Lecture 1:
+Displaying the auction view::
+--The view for displaying a single auction will contain the core functionality of the
+real-time auction and bidding features for the marketplace.
+
+--Before getting into the implementation of real-time bidding, we will set up the full-stack slice for retrieving
+details of a single auction and display these details in a React component that will
+house the auction display, timer, and bidding capabilities.
+
+The read auction API::
+--To display the details of an existing auction in a view of its own, we need to add a
+backend API that will receive a request for the auction from the client and return its
+details in the response.
+
+The Auction component::
+--We will implement an Auction component to fetch and display the details of a single
+auction to the end user. This view will also have real-time update functionalities that
+will render based on the current state of the auction and on whether the user viewing
+the page is signed in.
+
+--Auction component route can be used in any component to link to a specific auction

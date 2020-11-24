@@ -17,6 +17,8 @@ returns the relevant auctions in the response. */
 router.route('/api/auctions/bid/:userId')
   .get(auctionCtrl.listByBidder)
 
+  /**we will implement a read auction API in the backend that will accept a GET request with a specified auction ID and return the
+corresponding auction document from the Auction collection in the database. */
 router.route('/api/auction/:auctionId')
   .get(auctionCtrl.read)
 
@@ -31,6 +33,8 @@ router.route('/api/auctions/by/:userId')
       auctionCtrl.create)
   .get(authCtrl.requireSignin, authCtrl.hasAuthorization, auctionCtrl.listBySeller)
 
+  /**The :auctionId param in the /api/auctions/:auctionId route URL will invoke
+the auctionByID controller method */
 router.route('/api/auctions/:auctionId')
   .put(authCtrl.requireSignin, auctionCtrl.isSeller, auctionCtrl.update)
   .delete(authCtrl.requireSignin, auctionCtrl.isSeller, auctionCtrl.remove)
@@ -45,6 +49,9 @@ router.route('/api/auctions/image/:auctionId')
 router.route('/api/auctions/defaultphoto')
   .get(auctionCtrl.defaultPhoto)
 
+  
+  /**The :auctionId param in the route URL invokes the auctionByID controller
+method when a GET request is received at this route */
 router.param('auctionId', auctionCtrl.auctionByID)
 /**To process the :userId parameter and retrieve the associated user from the database,
 we will utilize the userByID method from the user controller methods so that the user is available in the request object as profile. */

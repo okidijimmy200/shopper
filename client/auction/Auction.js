@@ -75,7 +75,8 @@ export default function Auction ({match}) {
     useEffect(() => {
       const abortController = new AbortController()
       const signal = abortController.signal
-  
+  /**The implementation of the Auction component will retrieve the auction details by
+calling the read auction API in a useEffect hook */
       read({auctionId: match.params.auctionId}, signal).then((data) => {
         if (data.error) {
           setError(data.error)
@@ -103,8 +104,15 @@ export default function Auction ({match}) {
                 <CardHeader
                   title={auction.itemName}
                   subheader={<span>
+                    {/* In the component view, we will render the auction state by considering the current
+date and the given auction's bidding start and end timings */}
+{/* if the current date is before the bidStart date, we show a
+message indicating that the auction has not started yet */}
                     {currentDate < new Date(auction.bidStart) && 'Auction Not Started'}
+                    {/* If the current date is between the bidStart and bidEnd dates, then the auction is live. */}
                     {currentDate > new Date(auction.bidStart) && currentDate < new Date(auction.bidEnd) && 'Auction Live'}
+                    {/* If the current date is after
+the bidEnd date, then the auction has ended. */}
                     {currentDate > new Date(auction.bidEnd) && 'Auction Ended'}
                     </span>}
                 />
@@ -122,14 +130,25 @@ export default function Auction ({match}) {
                   </Grid>
                   
                   <Grid item xs={7} sm={7}>
+                    {/* The Auction component will also conditionally render a timer and a bidding section,
+depending on whether the current user is signed in, and also on the state of the
+auction at the moment */}
+{/* ----------------------------------------- */}
+{/* If the current date happens to be after the bid starting time, instead of showing the
+start time, we render the Timer component to show the time remaining until bidding
+ends */}
                     {currentDate > new Date(auction.bidStart) 
                     ? (<>
                         <Timer endTime={auction.bidEnd} update={update}/> 
                         { auction.bids.length > 0 &&  
+                        // we show the last bid amount, which will be the first item in the auction bids array if some bids were already placed.
                             <Typography component="p" variant="subtitle1" className={classes.lastBid}>
                                 {` Last bid: $ ${auction.bids[0].bid}`}
                             </Typography>
                         }
+                        {/* If the current user is signed in when the
+auction is in this state, we also render a Bidding component, which will allow them
+to bid and see the bidding history. */}
                         { !auth.isAuthenticated() && <Typography>Please, <Link to='/signin'>sign in</Link> to place your bid.</Typography> }
                         { auth.isAuthenticated() && <Bidding auction={auction} justEnded={justEnded} updateBids={updateBids}/> }
                       </>)

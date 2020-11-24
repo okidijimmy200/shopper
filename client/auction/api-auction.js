@@ -71,6 +71,8 @@ displays the auctions related to a specific bidder. */
     }
   }
   
+  /**will use the fetch method to call the read auction API in a React
+component that will render the retrieved auction details. */
   const read = async (params, signal) => {
     try {
       let response = await fetch('/api/auction/' + params.auctionId, {

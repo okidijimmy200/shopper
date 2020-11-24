@@ -21,6 +21,7 @@ import StripeConnect from './user/StripeConnect'
 import ShopOrders from './order/ShopOrders'
 import Order from './order/Order'
 import NewAuction from './auction/NewAuction'
+import Auction from './auction/Auction'
 
 const MainRouter = () => {
   return (<div>
@@ -47,6 +48,9 @@ take the user to the corresponding Shop view with the shop details loaded. */}
         <Route path="/shops/:shopId" component={Shop}/>
 
         <Route path="/order/:orderId" component={Order}/>
+
+{/* The completed Auction component will be accessed in the browser */}
+        <Route path="/auction/:auctionId" component={Auction}/>
         {/* PrivateRoute in order to load the ShopOrders component at
 the /seller/orders/:shop/:shopId route */}
         <PrivateRoute path="/seller/orders/:shop/:shopId" component={ShopOrders}/>
