@@ -70,6 +70,7 @@ export default function Auction ({match}) {
   const classes = useStyles()
   const [auction, setAuction] = useState({})
   const [error, setError] = useState('')
+  //jst ended variable
   const [justEnded, setJustEnded] = useState(false)
 
     useEffect(() => {
@@ -88,6 +89,10 @@ calling the read auction API in a useEffect hook */
       abortController.abort()
     }
   }, [match.params.auctionId])
+  /**The update function that's provided to the Timer component will help set the value
+of the justEnded variable from false to true. This justEnded value is passed to
+the Bidding component so that it can be used to disable the option to place bids
+when the time ends */
   const updateBids = (updatedAuction) => {
     setAuction(updatedAuction)
   }
@@ -139,6 +144,9 @@ start time, we render the Timer component to show the time remaining until biddi
 ends */}
                     {currentDate > new Date(auction.bidStart) 
                     ? (<>
+                    {/* The Auction component provides it with props containing
+the auction end time value, as well as a function to update the auction view when the
+time ends, */}
                         <Timer endTime={auction.bidEnd} update={update}/> 
                         { auction.bids.length > 0 &&  
                         // we show the last bid amount, which will be the first item in the auction bids array if some bids were already placed.

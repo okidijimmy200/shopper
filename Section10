@@ -19,3 +19,27 @@ will render based on the current state of the auction and on whether the user vi
 the page is signed in.
 
 --Auction component route can be used in any component to link to a specific auction
+
+Lecture 2:
+Adding the Timer component::
+--When the auction is live, we will give the users a real-time update of how long they
+have before bidding ends on this given auction. We will implement a Timer
+component and conditionally render it in the Auction component to achieve this
+feature.
+--timer will count down the seconds and show how much time is left to the
+users viewing the live auction.
+
+--The remaining time decreases per second as the user is viewing the live auction. We
+will implement this countdown feature in the Timer component, which is added to
+the Auction component
+
+--The Auction component provides it with props containing
+the auction end time value, as well as a function to update the auction view when the
+time ends.
+
+--These props will be used in the Timer component to calculate time left and to update
+the view when time is up.
+
+--As a result, the timeLeft value will keep updating every second until the timeEnd
+value is true. When the timeEnd value does become true as the time is up, we will
+execute the update function that's sent in the props from the Auctions component
