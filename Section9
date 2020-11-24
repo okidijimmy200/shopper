@@ -65,5 +65,27 @@ TextField components with type set to datetime-local.
 seller, for example, in a view where a seller manages their auctions in the
 marketplace
 
+Lecture 4:
+Listing auctions::
+--All users browsing through the platform will be able to view the
+currently open auctions, in other words, auctions that are live or are going to start at a
+future date. The sellers will be able to view a list of auctions that they created, while
+signed in users will be able to view the list of auctions they placed bids in.
+
+The open Auctions API::
+--To retrieve the list of open auctions from the database, we will define a backend API
+that accepts a GET request and queries the Auction collection to return the open
+auctions that are found in the response.
+
+The Auctions by bidder API::
+--To be able to display all the auctions that a given user placed bids in, we will define a
+backend API that accepts a GET request and queries the Auction collection so that it
+returns the relevant auctions in the response.
+
+The Auctions by seller API::
+--Sellers in the marketplace will see a list of auctions that they created. To retrieve these
+auctions from the database, we will define a backend API that accepts a GET request
+and queries the Auction collection so that it returns the auctions by a specific seller.
+
 
 

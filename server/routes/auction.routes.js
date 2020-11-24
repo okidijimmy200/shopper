@@ -6,14 +6,23 @@ import auctionCtrl from '../controllers/auction.controller'
 const router = express.Router()
 
 router.route('/api/auctions')
+/**To retrieve the list of open auctions from the database, we will define a backend API
+that accepts a GET request and queries the Auction collection to return the open
+auctions that are found in the response. */
   .get(auctionCtrl.listOpen)
 
+  /**To be able to display all the auctions that a given user placed bids in, we will define a
+backend API that accepts a GET request and queries the Auction collection so that it
+returns the relevant auctions in the response. */
 router.route('/api/auctions/bid/:userId')
   .get(auctionCtrl.listByBidder)
 
 router.route('/api/auction/:auctionId')
   .get(auctionCtrl.read)
 
+  /**To retrieve these
+auctions from the database, we will define a backend API that accepts a GET request
+and queries the Auction collection so that it returns the auctions by a specific seller */
 router.route('/api/auctions/by/:userId')
 /**A POST request to this route  will ensure the requesting user is signed in and is also authorized */
   .post(authCtrl.requireSignin,

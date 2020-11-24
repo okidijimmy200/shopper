@@ -17,6 +17,9 @@ const create = async (params, credentials, auction) => {
       }
   }
   
+  /**To fetch this API in the frontend, we will add a corresponding listOpen method
+in api-auction.js, similar to other API implementations. This fetch method will be
+used in the frontend component that displays the open auctions to the user */
   const listOpen = async (signal) => {
     try {
       let response = await fetch('/api/auctions', {
@@ -28,7 +31,10 @@ const create = async (params, credentials, auction) => {
       console.log(err)
     }
   }
-  
+  /**To fetch this API in the frontend, we will add a
+corresponding listBySeller method in api-auction.js, similar to other API
+implementations. This fetch method will be used in the frontend component that
+displays the auctions related to a specific seller. */
   const listBySeller = async (params, credentials, signal) => {
     try {
       let response = await fetch('/api/auctions/by/'+params.userId, {
@@ -45,6 +51,10 @@ const create = async (params, credentials, auction) => {
     }
   }
   
+  /**To fetch this API in the frontend, we will add a
+corresponding listByBidder method in api-auction.js, similar to other API
+implementations. This fetch method will be used in the frontend component that
+displays the auctions related to a specific bidder. */
   const listByBidder = async (params, credentials, signal) => {
     try {
       let response = await fetch('/api/auctions/bid/'+params.userId, {

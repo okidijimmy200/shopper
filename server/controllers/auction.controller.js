@@ -114,8 +114,15 @@ const remove = async (req, res) => {
   }  
 }
 
+/**A GET request that's received at the /api/auctions route will invoke the listOpen
+controller method, which will query the Auction collection in the database so that it
+returns all the auctions with ending dates greater than the current date */
 const listOpen = async (req, res) => {
   try {
+    /**The auctions that are returned by the query in this listOpen method will be sorted
+by the starting date, with auctions that start earlier shown first. These auctions will
+also contain the ID and name details of the seller and each bidder. The resulting array
+of auctions will be sent back in the response to the requesting clien */
     let auctions = await Auction.find({ 'bidEnd': { $gt: new Date() }}).sort('bidStart').populate('seller', '_id name').populate('bids.bidder', '_id name')
     res.json(auctions)
   } catch (err){
@@ -125,9 +132,15 @@ const listOpen = async (req, res) => {
   }
 }
 
-
+/**A GET request, when received at the /api/auctions/by/:userId route, will
+invoke the listBySeller controller method, which will query the Auction collection
+in the database so that it returns all the auctions with sellers matching the user
+specified by the userId parameter in the route */
 const listBySeller = async (req, res) => {
   try {
+    /**This method will return the auctions for the specified seller in response to the
+requesting client, and each auction will also contain the ID and name details of the
+seller and each bidder. */
     let auctions = await Auction.find({seller: req.profile._id}).populate('seller', '_id name').populate('bids.bidder', '_id name')
     res.json(auctions)
   } catch (err){
@@ -136,8 +149,16 @@ const listBySeller = async (req, res) => {
     })
   }
 }
+
+/**A GET request, when received at the /api/auctions/bid/:userId route, will
+invoke the listByBidder controller method, which will query the Auction collection
+in the database so that it returns all the auctions that contain bids with a bidder
+matching the user specified by the userId parameter in the route */
 const listByBidder = async (req, res) => {
   try {
+    /**This method will return the resulting auctions in response to the requesting client,
+and each auction will also contain the ID and name details of the seller and each
+bidder. */
     let auctions = await Auction.find({'bids.bidder': req.profile._id}).populate('seller', '_id name').populate('bids.bidder', '_id name')
     res.json(auctions)
   } catch (err){
