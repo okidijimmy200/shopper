@@ -68,6 +68,9 @@ export default function MyAuctions(){
         <Typography type="title" className={classes.title}>
           Your Auctions
           <span className={classes.addButton}>
+            {/* This link can be added to any of the view components that may be accessed by the
+seller, for example, in a view where a seller manages their auctions in the
+marketplace */}
             <Link to="/auction/new">
               <Button color="primary" variant="contained">
                 <Icon className={classes.leftIcon}>add_box</Icon>  New Auction

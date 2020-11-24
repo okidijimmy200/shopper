@@ -47,3 +47,23 @@ Fetching the create API in the view::
 --to make a request to this create API, we will set up a fetch method
 on the client-side to make a POST request to the API route and pass it the multipart
 form data containing details of the new auction in the body.
+
+Lecture 3:
+The NewAuction component::
+--Sellers in the marketplace application will interact with a form view to enter details of
+a new auction and create the new auction. We will render this form in
+the NewAuction component, which will allow a seller to create an auction by entering
+an item name and description, uploading an image file from their local filesystem,
+specifying the starting bid value, and creating date-time values for starting and
+ending bidding on this auction.
+
+--the date-time input options
+for the auction start and end timings. To add these fields, we'll use Material-UI
+TextField components with type set to datetime-local.
+
+--This link can be added to any of the view components that may be accessed by the
+seller, for example, in a view where a seller manages their auctions in the
+marketplace
+
+
+

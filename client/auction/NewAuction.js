@@ -45,6 +45,9 @@ const useStyles = makeStyles(theme => ({
     marginLeft:'10px'
   }
 }))
+/**The TextField with the type as datetime-local takes dates in the format yyyymm-
+ddThh:mm. So, we define a getDateString method that takes a JavaScript date
+object and formats it accordingly */
 const getDateString = (date) => {
   let year = date.getFullYear()
   let day = date.getDate().toString().length === 1 ? '0' + date.getDate() : date.getDate()
@@ -80,7 +83,12 @@ export default function NewAuction() {
   }
 
   const clickSubmit = () => {
+    /**In order to ensure the user has entered the dates correctly, with the start time set to a
+value before the end time, we need to add a check before submitting the form details
+to the backend. */
     if(values.bidEnd < values.bidStart){
+      /**If the date combination is found to be invalid, then the user will be informed and
+form data will not be sent to the backend */
       setValues({...values, error: "Auction cannot end before it starts"})
     }
     else{
@@ -139,6 +147,9 @@ export default function NewAuction() {
             id="datetime-local"
             label="Auction Start Time"
             type="datetime-local"
+            /**We also assign default date-time values for these fields in the format expected by this
+input component. We set the default start time to the current date-time and the
+default end time to an hour after the current date-time */
             defaultValue={defaultStartTime}
             className={classes.textField}
             onChange={handleChange('bidStart')}
@@ -147,9 +158,14 @@ export default function NewAuction() {
             }}
           /><br/>
           <br/>
+          {/* the date-time input options
+for the auction start and end timings. To add these fields, we'll use Material-UI
+TextField components with type set to datetime-local */}
           <TextField
             id="datetime-local"
             label="Auction End Time"
+            /**The TextField with the type as datetime-local takes dates in the format yyyymm-
+ddThh:mm.  */
             type="datetime-local"
             defaultValue={defaultEndTime}
             className={classes.textField}

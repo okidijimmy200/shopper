@@ -20,6 +20,7 @@ import Cart from './cart/Cart'
 import StripeConnect from './user/StripeConnect'
 import ShopOrders from './order/ShopOrders'
 import Order from './order/Order'
+import NewAuction from './auction/NewAuction'
 
 const MainRouter = () => {
   return (<div>
@@ -72,6 +73,9 @@ the route to the EditProduct view */}
 {/* The MERN Marketplace redirect URI is set to /seller/stripe/connect, which will
 render the StripeConnect component. */}
         <Route path="/seller/stripe/connect" component={StripeConnect}/>
+        {/* This NewAuction component can only be viewed by a signed-in user who is also a
+seller. */}
+        <PrivateRoute path="/auction/new" component={NewAuction}/>
       </Switch>
     </div>)
 }
