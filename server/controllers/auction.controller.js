@@ -1,4 +1,3 @@
-//temp code
 import Auction from '../models/auction.model'
 import extend from 'lodash/extend'
 import errorHandler from '../helpers/dbErrorHandler'
@@ -6,7 +5,15 @@ import formidable from 'formidable'
 import fs from 'fs'
 import defaultImage from './../../client/assets/images/default.png'
 
+/**The create method in the auction controller, which is invoked after a seller is
+verified, uses the formidable node module to parse the multipart request that may
+contain an image file uploaded by the user for the item image. If there is a
+file, formidable will store it temporarily in the filesystem, and we will read it using
+the fs module to retrieve the file type and data so that we can store it in
+the image field in the auction document */
 const create = (req, res) => {
+  /**The item image file for the auction is uploaded by the user and stored in MongoDB as
+data */
   let form = new formidable.IncomingForm()
   form.keepExtensions = true
   form.parse(req, async (err, fields, files) => {
@@ -48,6 +55,10 @@ const auctionByID = async (req, res, next, id) => {
   }
 }
 
+/**in order for image to be shown in the views, it is retrieved from the database as an
+image file at a separate GET API. The GET API is set up as an Express route
+at /api/auctions/image/:auctionId, which gets the image data from MongoDB
+and sends it as a file in the response */
 const photo = (req, res, next) => {
   if(req.auction.image.data){
     res.set("Content-Type", req.auction.image.contentType)

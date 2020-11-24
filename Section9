@@ -31,3 +31,19 @@ list of bids that have been placed for this auction.
 
 --These auction-related fields will allow us to implement auction and bidding-related
 features for the MERN Marketplace application.
+
+Lecture 2:
+Creating a new auction:::
+---For a seller to be able to create a new auction on the platform, we will need to
+integrate a full-stack slice that allows the user to fill out a form view in the frontend,
+and then save the entered details to a new auction document in the database in the
+backend.
+
+The create auction API::
+--For the implementation of the backend API, which will allow us to create a new
+auction in the database, we will declare a POST route.
+
+Fetching the create API in the view::
+--to make a request to this create API, we will set up a fetch method
+on the client-side to make a POST request to the API route and pass it the multipart
+form data containing details of the new auction in the body.

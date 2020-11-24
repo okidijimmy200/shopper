@@ -1,4 +1,6 @@
-//temp code
+/**to make a request to this create API, we will set up a fetch method
+on the client-side to make a POST request to the API route and pass it the multipart
+form data containing details of the new auction in the body. */
 const create = async (params, credentials, auction) => {
     try {
       let response = await fetch('/api/auctions/by/'+ params.userId, {
