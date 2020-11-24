@@ -43,3 +43,61 @@ the view when time is up.
 --As a result, the timeLeft value will keep updating every second until the timeEnd
 value is true. When the timeEnd value does become true as the time is up, we will
 execute the update function that's sent in the props from the Auctions component
+
+Lecture 3:
+Implementing real-time bidding with Socket.IO::
+--Users who are signed in to the marketplace platform will be able to take part in live
+auctions. They will be able to place their bids and get real-time updates in the same
+view while other users on the platform are countering their bids.
+
+Integrating Socket.IO::
+--Socket.IO will allow us to add the real-time bidding feature to auctions in the
+marketplace application. Socket.IO is a JavaScript library with a client-side module
+that runs in the browser and a server-side module that integrates with Node.js.
+Integrating these modules with our MERN-based application will enable bidirectional
+and real-time communication between the clients and the server.
+
+we will install the client and server
+libraries with Yarn by running the following command from the command line:
+**************yarn add socket.io socket.io-client******
+
+--With the Socket.IO libraries added to the project, we will update our backend to
+integrate Socket.IO with the server code. We need to initialize a new instance of
+socket.io using the same HTTP server that we are using for our application.
+
+--These events will be received by the server socket connection, resulting in
+subscription or unsubscription of the client to the given auction room
+
+Placing bids::
+--When a user on the platform is signed in and viewing an auction that is currently live,
+they will see an option to place their own bid.
+
+--To allow users to place their bids, in the following sections, we will add a form that
+lets them enter a value more than the last bid and submit it to the server using socket
+communication. Then, on the server, we will handle this new bid that's been sent over
+the socket so that the changed auction bids can be saved in the database and the view
+can be updated instantly for all connected users when the server accepts this bid.
+
+Adding a form to enter a bid::
+
+
+Receiving a bid on the server::
+--When a new bid is placed by a user and emitted over a socket connection, it will be
+handled on the server so that it's stored in the corresponding auction in the database.
+
+Displaying the changing bidding history::
+--After a new bid is accepted on the server and stored in the database, the new array of
+bids will be updated in the view for all the clients currently on the auctions page.
+
+Updating the view state with a new bid::
+
+Rendering the bidding history::
+--we will render a table that displays the details of all the
+bids that were placed for the given auction. This will inform the user of the bids that
+were already placed and are being placed in real-time as they are viewing a live
+auction.
+
+--When a new bid is placed by any user viewing this auction and the updated auction
+is received in the socket and set to state, this table containing the bidding history will
+update for all its viewers and show the latest bid at the top of the table. By doing this,
+it gives all the users in the auction room a real-time update of bidding

@@ -96,7 +96,13 @@ when the time ends */
   const updateBids = (updatedAuction) => {
     setAuction(updatedAuction)
   }
+  /**When the new auction with updated bids is received from the server in the socket
+event, we execute the updateBids function that was sent as a prop from the Auction
+component. */
   const update = () => {
+    /**This will update the auction data that was set in the state of the Auction component
+and, as a result, rerender the complete auction view with the updated auction
+data */
     setJustEnded(true)
   }
   const imageUrl = auction._id
@@ -158,6 +164,8 @@ time ends, */}
 auction is in this state, we also render a Bidding component, which will allow them
 to bid and see the bidding history. */}
                         { !auth.isAuthenticated() && <Typography>Please, <Link to='/signin'>sign in</Link> to place your bid.</Typography> }
+                        {/* In the frontend, only the auction view – specifically, the bidding section – will be using
+sockets for real-time communication */}
                         { auth.isAuthenticated() && <Bidding auction={auction} justEnded={justEnded} updateBids={updateBids}/> }
                       </>)
                     : <Typography component="p" variant="h6">{`Auction Starts at ${new Date(auction.bidStart).toLocaleString()}`}</Typography>}
